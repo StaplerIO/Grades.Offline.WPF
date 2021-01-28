@@ -16,7 +16,7 @@
     mc:Ignorable="d"
     MinWidth="500"
     MinHeight="350"
-    Title="{x:Static properties:Resources.AppDisplayName}">
+    Title="Grades">
     <controls:MetroWindow.TitleTemplate>
         <DataTemplate>
             <Fluent:RibbonTitleBar
@@ -44,7 +44,7 @@
                             </i:Interaction.Behaviors>
                             <Fluent:BackstageTabItem
                                 Tag="Grades.Offline.WPF.Views.SettingsPage"
-                                Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabSettingsHeader}" />
+                                Header="Options" />
                         </Fluent:BackstageTabControl>
                     </Fluent:Backstage>
                 </Fluent:Ribbon.Menu>
@@ -57,16 +57,18 @@
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
-                    Header="{x:Static properties:Resources.ShellPageRibbonTabHomeHeader}">
+                    Header="Class">
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="150"
-                        Header="{x:Static properties:Resources.ShellPageRibbonHomeGroupCommon1Header}">
+                        Header="Class Control Options">
+                        <Fluent:Button>Create class</Fluent:Button>
+                        <Fluent:Button>Go to class</Fluent:Button>
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox
                         State="Middle"
                         MinWidth="150"
-                        Header="{x:Static properties:Resources.ShellPageRibbonHomeGroupCommon2Header}">
+                        Header="Exam Control Options">
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>

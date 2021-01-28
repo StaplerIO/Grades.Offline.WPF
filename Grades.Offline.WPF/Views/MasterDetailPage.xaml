@@ -122,7 +122,7 @@
             <TextBlock
                 Style="{StaticResource PageTitleStyle}"
                 Margin="{StaticResource MediumLeftMargin}"
-                Text="{x:Static properties:Resources.MasterDetailPageTitle}" />
+                Text="Master Detail" />
             <ListView
                 Grid.Row="1"
                 ItemsSource="{Binding SampleItems}"
