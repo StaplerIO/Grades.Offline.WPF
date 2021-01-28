@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grades.Offline.WPF", "Grades.Offline.WPF\Grades.Offline.WPF.csproj", "{2D62433F-6697-41B4-B0F7-1DF2B60480A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grades.Offline.WPF.Core", "Grades.Offline.WPF.Core\Grades.Offline.WPF.Core.csproj", "{B244B441-BB33-4E1C-8EFD-9A129F675BEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{2D62433F-6697-41B4-B0F7-1DF2B60480A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D62433F-6697-41B4-B0F7-1DF2B60480A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D62433F-6697-41B4-B0F7-1DF2B60480A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B244B441-BB33-4E1C-8EFD-9A129F675BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B244B441-BB33-4E1C-8EFD-9A129F675BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B244B441-BB33-4E1C-8EFD-9A129F675BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B244B441-BB33-4E1C-8EFD-9A129F675BEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

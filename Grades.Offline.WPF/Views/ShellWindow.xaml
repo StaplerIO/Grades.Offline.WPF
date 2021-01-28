@@ -64,7 +64,7 @@
                         State="Large"
                         MinWidth="150"
                         Header="Class">
-                        <Fluent:Button Header="Create" />
+                        <Fluent:Button Header="Create" Name="CreateClassButton" Click="CreateClassButton_Click" />
                         <Fluent:Button Header="View" />
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox

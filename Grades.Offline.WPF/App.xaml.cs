@@ -5,12 +5,10 @@ using System.Windows.Threading;
 
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
-using Grades.Offline.WPF.Core.Contracts.Services;
-using Grades.Offline.WPF.Core.Services;
 using Grades.Offline.WPF.Models;
 using Grades.Offline.WPF.Services;
 using Grades.Offline.WPF.Views;
-
+using Grades.Offline.WPF.Views.Classes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,21 +50,17 @@ namespace Grades.Offline.WPF
 
         private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
+
             // TODO WTS: Register your services and pages here
 
             // App Host
             services.AddHostedService<ApplicationHostService>();
 
-            // Core Services
-            services.AddSingleton<IFileService, FileService>();
-
             // Services
             services.AddSingleton<IWindowManagerService, WindowManagerService>();
             services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
             services.AddSingleton<ISystemService, SystemService>();
-            services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-            services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IRightPaneService, RightPaneService>();
             services.AddSingleton<INavigationService, NavigationService>();
 
@@ -75,7 +69,7 @@ namespace Grades.Offline.WPF
 
             services.AddTransient<MainPage>();
 
-            services.AddTransient<MasterDetailPage>();
+            services.AddTransient<CreateClassPage>();
 
             services.AddTransient<SettingsPage>();
 
@@ -83,6 +77,8 @@ namespace Grades.Offline.WPF
 
             // Configuration
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
+
+            // Database
         }
 
         private async void OnExit(object sender, ExitEventArgs e)

@@ -9,7 +9,7 @@ using Fluent;
 using Grades.Offline.WPF.Behaviors;
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
-
+using Grades.Offline.WPF.Views.Classes;
 using MahApps.Metro.Controls;
 
 namespace Grades.Offline.WPF.Views
@@ -81,5 +81,10 @@ namespace Grades.Offline.WPF.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void CreateClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            shellFrame.Navigate(new CreateClassPage());
+        }
     }
 }

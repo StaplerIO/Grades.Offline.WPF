@@ -9,10 +9,8 @@
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="8.0.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.10" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Grades.Offline.WPF.Core\Grades.Offline.WPF.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Classes\" />
+    <Folder Include="Models\DbModels\" />
   </ItemGroup>
 </Project>
