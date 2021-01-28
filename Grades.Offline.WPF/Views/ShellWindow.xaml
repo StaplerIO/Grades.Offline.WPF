@@ -54,6 +54,8 @@
                 </i:Interaction.Behaviors>
 
                 <!--Tabs-->
+                
+                <!--Class zone-->
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
@@ -61,17 +63,69 @@
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="150"
-                        Header="Class Control Options">
-                        <Fluent:Button>Create class</Fluent:Button>
-                        <Fluent:Button>Go to class</Fluent:Button>
+                        Header="Class">
+                        <Fluent:Button Header="Create" />
+                        <Fluent:Button Header="View" />
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox
-                        State="Middle"
+                        State="Large"
                         MinWidth="150"
-                        Header="Exam Control Options">
+                        Header="Danger Zone">
+                        <Fluent:Button Header="Edit"></Fluent:Button>
+                    </Fluent:RibbonGroupBox>
+                </Fluent:RibbonTabItem>
+                <!--Student zone-->
+                <Fluent:RibbonTabItem
+                    Fluent:KeyTip="A"
+                    behaviors:RibbonTabsBehavior.IsHomeTab="True"
+                    Header="Student">
+                    <Fluent:RibbonGroupBox
+                        State="Large"
+                        MinWidth="150"
+                        Header="Student">
+                        <Fluent:Button Header="Add" />
+                        <Fluent:Button Header="View details" />
+                    </Fluent:RibbonGroupBox>
+                    <Fluent:RibbonGroupBox
+                        State="Large"
+                        MinWidth="150"
+                        Header="Danger Zone">
+                        <Fluent:Button Header="Edit"></Fluent:Button>
+                    </Fluent:RibbonGroupBox>
+                </Fluent:RibbonTabItem>
+                <!--Exam zone-->
+                <Fluent:RibbonTabItem
+                    Fluent:KeyTip="A"
+                    behaviors:RibbonTabsBehavior.IsHomeTab="True"
+                    Header="Exam">
+                    <Fluent:RibbonGroupBox
+                        State="Large"
+                        MinWidth="150"
+                        Header="Exam">
+                        <Fluent:Button Header="Add" />
+                        <Fluent:Button Header="View details" />
+                    </Fluent:RibbonGroupBox>
+                    <Fluent:RibbonGroupBox
+                        State="Large"
+                        MinWidth="150"
+                        Header="Danger Zone">
+                        <Fluent:Button Header="Delete"></Fluent:Button>
+                    </Fluent:RibbonGroupBox>
+                </Fluent:RibbonTabItem>
+                <!--Help zone-->
+                <Fluent:RibbonTabItem
+                    Fluent:KeyTip="A"
+                    behaviors:RibbonTabsBehavior.IsHomeTab="True"
+                    Header="Help">
+                    <Fluent:RibbonGroupBox
+                        State="Large"
+                        MinWidth="150"
+                        Header="Help">
+                        <Fluent:Button Header="Help" />
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>
+                
             <controls:SplitView
                 Grid.Row="1"
                 x:Name="splitView"
