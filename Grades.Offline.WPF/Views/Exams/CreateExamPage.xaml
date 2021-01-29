@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="Grades.Offline.WPF.Views.Exams.CreateExamPage"
+    Style="{DynamicResource MahApps.Styles.Page}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Margin="{StaticResource MediumLeftMargin}"
+            Text="Create Exam" />
+        <Grid
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <StackPanel Orientation="Vertical">
+                <Expander Header="Basic information" IsExpanded="True">
+                    <StackPanel Margin="10">
+                        <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
+                            <Label Content="For class:"/>
+                            <ComboBox Name="ClassSelector" DisplayMemberPath="Name" Loaded="ClassSelector_Loaded"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Name:"/>
+                            <TextBox x:Name="ExamNameTextBox"
+                             MaxLength="100"
+                             TextWrapping="NoWrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
+                            <Label Content="Date:"/>
+                            <DatePicker Name="ExamDate"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Examinees">
+                    <ListView Name="ExamieeList" Loaded="ExamieeList_Loaded">
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Attended?">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Name"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView>
+                </Expander>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

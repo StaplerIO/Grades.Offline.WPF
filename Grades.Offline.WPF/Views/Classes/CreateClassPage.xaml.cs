@@ -36,16 +36,16 @@ namespace Grades.Offline.WPF.Views.Classes
             ProgressRing.Visibility = Visibility.Visible;
             if (!string.IsNullOrWhiteSpace(ClassNameTextBox.Text))
             {
-                _dbContext.Classes.Add(new DbClass
+                var entity = _dbContext.Classes.Add(new DbClass
                 {
                     Name = ClassNameTextBox.Text
-                });
+                }).Entity;
                 await _dbContext.SaveChangesAsync();
 
                 // Tell user that the class has been created
                 MessageBox.Show("Class created successfully!", "Grades", MessageBoxButton.OK);
 
-                NavigationService.Navigate(new ClassDetailPage());
+                NavigationService.Navigate(new ClassDetailPage(entity.Id));
             }
 
             DoneButton.Visibility = Visibility.Visible;

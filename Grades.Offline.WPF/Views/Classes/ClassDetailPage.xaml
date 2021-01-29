@@ -16,15 +16,46 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Class: " />
+            Text="Class Details"
+            />
         <Grid
             Grid.Row="1"
+            Grid.Column="5"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <!--
-            The Mahapps Gray10 color represents where you should place your content.
-            Place your content here.
-            -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10" Grid.ColumnSpan="2">
+                <Label Content="Class" Name="ClassNameLabel" FontSize="20"/>
+                <Label Content="@{ClassId}" Name="ClassIdLabel" FontFamily="Consolas" FontSize="11" Foreground="Gray"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.ColumnSpan="3">
+                <Expander Header="Exams" IsExpanded="True">
+                    <ListView Name="ExamList">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Width="Auto" Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+                <Expander Header="Students" IsExpanded="False">
+                    <ListView Name="StudentList" Loaded="StudentList_Loaded">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Width="Auto" Header="Sno" DisplayMemberBinding="{Binding Sno}"/>
+                                <GridViewColumn Width="Auto" Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

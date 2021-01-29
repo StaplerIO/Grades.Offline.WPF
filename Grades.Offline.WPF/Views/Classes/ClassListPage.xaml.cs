@@ -26,15 +26,22 @@ namespace Grades.Offline.WPF.Views.Classes
 
             var dbContext = new ApplicationDbContext();
             var classList = new List<ClassViewModel>();
-            foreach(var @class in dbContext.Classes)
+            foreach (var @class in dbContext.Classes)
             {
                 classList.Add(new ClassViewModel
                 {
+                    Id = @class.Id,
                     Name = @class.Name
                 });
             }
 
             ClassList.ItemsSource = classList;
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var viewModel = ((ListViewItem) sender).Content as ClassViewModel;
+            NavigationService.Navigate(new ClassDetailPage(viewModel.Id));
         }
     }
 }

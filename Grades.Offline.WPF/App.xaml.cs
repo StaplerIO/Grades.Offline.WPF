@@ -10,6 +10,8 @@ using Grades.Offline.WPF.Models;
 using Grades.Offline.WPF.Services;
 using Grades.Offline.WPF.Views;
 using Grades.Offline.WPF.Views.Classes;
+using Grades.Offline.WPF.Views.Exams;
+using Grades.Offline.WPF.Views.Students;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -76,6 +78,10 @@ namespace Grades.Offline.WPF
             services.AddTransient<CreateClassPage>();
             services.AddTransient<ClassDetailPage>();
             services.AddTransient<ClassListPage>();
+
+            services.AddTransient<CreateExamPage>();
+
+            services.AddTransient<CreateStudentPage>();
 
             services.AddTransient<SettingsPage>();
 

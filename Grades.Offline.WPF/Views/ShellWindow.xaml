@@ -51,6 +51,7 @@
 
                 <i:Interaction.Behaviors>
                     <behaviors:RibbonTabsBehavior x:Name="tabsBehavior" />
+
                 </i:Interaction.Behaviors>
 
                 <!--Tabs-->
@@ -104,7 +105,7 @@
                         State="Large"
                         MinWidth="150"
                         Header="Exam">
-                        <Fluent:Button Header="Add" />
+                        <Fluent:Button Name="CreateExamButton" Header="Create" Click="CreateExamButton_Click"/>
                         <Fluent:Button Header="View details" />
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox
