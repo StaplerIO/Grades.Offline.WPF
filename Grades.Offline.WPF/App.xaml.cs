@@ -74,6 +74,8 @@ namespace Grades.Offline.WPF
             services.AddTransient<MainPage>();
 
             services.AddTransient<CreateClassPage>();
+            services.AddTransient<ClassDetailPage>();
+            services.AddTransient<ClassListPage>();
 
             services.AddTransient<SettingsPage>();
 
@@ -83,7 +85,11 @@ namespace Grades.Offline.WPF
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 
             // Database
-            // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(context.Configuration.GetConnectionString("DbConnection")));
+            // services.AddDbContext<ApplicationDbContext>();
+            using(ApplicationDbContext dbContext = new ApplicationDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
         }
 
         private async void OnExit(object sender, ExitEventArgs e)

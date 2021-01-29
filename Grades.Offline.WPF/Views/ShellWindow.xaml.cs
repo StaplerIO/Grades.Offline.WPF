@@ -86,5 +86,10 @@ namespace Grades.Offline.WPF.Views
         {
             shellFrame.Navigate(new CreateClassPage());
         }
+
+        private void QueryAllClassesButton_Click(object sender, RoutedEventArgs e)
+        {
+            shellFrame.Navigate(new ClassListPage());
+        }
     }
 }

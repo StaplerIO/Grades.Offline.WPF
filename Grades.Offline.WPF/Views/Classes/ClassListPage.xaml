@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-    x:Class="Grades.Offline.WPF.Views.Classes.CreateClassPage"
+    x:Class="Grades.Offline.WPF.Views.Classes.ClassListPage"
     Style="{DynamicResource MahApps.Styles.Page}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -17,24 +17,21 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create class" />
+            Text="All Classes" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <StackPanel  Margin="10">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Name:"/>
-                    <TextBox x:Name="ClassNameTextBox"
-                             MaxLength="100"
-                             TextWrapping="NoWrap"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
-                    <mah:ProgressRing Height="19" Width="20" Visibility="Hidden" Name="ProgressRing"/>
-                </StackPanel>
-                
-            </StackPanel>
+            <ListView Name="ClassList">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true">
+                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="150" Header="Student Count" DisplayMemberBinding="{Binding StudentCount}"/>
+                        <GridViewColumn Width="100" Header="Actions">
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Page>

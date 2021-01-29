@@ -65,7 +65,9 @@
                         MinWidth="150"
                         Header="Class">
                         <Fluent:Button Header="Create" Name="CreateClassButton" Click="CreateClassButton_Click" />
-                        <Fluent:Button Header="View" />
+                        <Fluent:DropDownButton Header="View">
+                            <Fluent:Button Header="All" Size="Middle" Name="QueryAllClassesButton" Click="QueryAllClassesButton_Click"/>
+                        </Fluent:DropDownButton>
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox
                         State="Large"

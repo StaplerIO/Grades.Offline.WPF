@@ -15,16 +15,14 @@ namespace Grades.Offline.WPF.Services
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly INavigationService _navigationService;
-        private readonly IPersistAndRestoreService _persistAndRestoreService;
         private readonly IThemeSelectorService _themeSelectorService;
         private IShellWindow _shellWindow;
 
-        public ApplicationHostService(IServiceProvider serviceProvider, INavigationService navigationService, IThemeSelectorService themeSelectorService, IPersistAndRestoreService persistAndRestoreService)
+        public ApplicationHostService(IServiceProvider serviceProvider, INavigationService navigationService, IThemeSelectorService themeSelectorService)
         {
             _serviceProvider = serviceProvider;
             _navigationService = navigationService;
             _themeSelectorService = themeSelectorService;
-            _persistAndRestoreService = persistAndRestoreService;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -40,13 +38,11 @@ namespace Grades.Offline.WPF.Services
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
-            _persistAndRestoreService.PersistData();
             await Task.CompletedTask;
         }
 
         private async Task InitializeAsync()
         {
-            _persistAndRestoreService.RestoreData();
             _themeSelectorService.InitializeTheme();
             await Task.CompletedTask;
         }
