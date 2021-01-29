@@ -5,10 +5,12 @@ using System.Windows.Threading;
 
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
+using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models;
 using Grades.Offline.WPF.Services;
 using Grades.Offline.WPF.Views;
 using Grades.Offline.WPF.Views.Classes;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -64,6 +66,8 @@ namespace Grades.Offline.WPF
             services.AddSingleton<IRightPaneService, RightPaneService>();
             services.AddSingleton<INavigationService, NavigationService>();
 
+            services.AddSingleton<ExamService>();
+
             // Views
             services.AddTransient<IShellWindow, ShellWindow>();
 
@@ -79,6 +83,7 @@ namespace Grades.Offline.WPF
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 
             // Database
+            // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(context.Configuration.GetConnectionString("DbConnection")));
         }
 
         private async void OnExit(object sender, ExitEventArgs e)
