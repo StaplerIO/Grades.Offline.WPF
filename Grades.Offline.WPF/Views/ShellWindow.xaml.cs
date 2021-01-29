@@ -62,10 +62,7 @@ namespace Grades.Offline.WPF.Views
             TitleBar.UpdateLayout();
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            tabsBehavior.Unsubscribe();
-        }
+        private void OnUnloaded(object sender, RoutedEventArgs e) => tabsBehavior.Unsubscribe();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -82,14 +79,8 @@ namespace Grades.Offline.WPF.Views
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        private void CreateClassButton_Click(object sender, RoutedEventArgs e)
-        {
-            shellFrame.Navigate(new CreateClassPage());
-        }
+        private void CreateClassButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new CreateClassPage());
 
-        private void QueryAllClassesButton_Click(object sender, RoutedEventArgs e)
-        {
-            shellFrame.Navigate(new ClassListPage());
-        }
+        private void QueryAllClassesButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new ClassListPage());
     }
 }
