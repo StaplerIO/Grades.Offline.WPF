@@ -1,12 +1,12 @@
 ﻿<Page
+    x:Class="Grades.Offline.WPF.Views.Students.CreateStudentPage"
+    Style="{DynamicResource MahApps.Styles.Page}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-    x:Class="Grades.Offline.WPF.Views.Classes.CreateClassPage"
-    Style="{DynamicResource MahApps.Styles.Page}"
+    xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,17 +17,28 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create class" />
+            Text="Create student" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
             <StackPanel  Margin="10">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Name:"/>
-                    <TextBox x:Name="ClassNameTextBox"
+                    <Label Content="Full Name"/>
+                    <TextBox x:Name="StudentNameTextBox"
                              MaxLength="100"
                              TextWrapping="NoWrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Sno"/>
+                    <TextBox x:Name="StudentSnoTextBox"
+                             MaxLength="100"
+                             PreviewTextInput="StudentSnoTextBox_PreviewTextInput"
+                             TextWrapping="NoWrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0, 5, 0, 0">
+                    <Label Content="Class"/>
+                    <ComboBox Name="ClassSelector" DisplayMemberPath="Name" Loaded="ClassSelector_Loaded"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
                     <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>

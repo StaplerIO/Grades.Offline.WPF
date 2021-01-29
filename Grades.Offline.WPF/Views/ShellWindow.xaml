@@ -85,7 +85,7 @@
                         State="Large"
                         MinWidth="150"
                         Header="Student">
-                        <Fluent:Button Header="Add" />
+                        <Fluent:Button Header="Add" Name="CreateStudentButton" Click="CreateStudentButton_Click" />
                         <Fluent:Button Header="View details" />
                     </Fluent:RibbonGroupBox>
                     <Fluent:RibbonGroupBox

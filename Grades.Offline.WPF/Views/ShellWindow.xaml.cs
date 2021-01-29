@@ -10,6 +10,7 @@ using Grades.Offline.WPF.Behaviors;
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
 using Grades.Offline.WPF.Views.Classes;
+using Grades.Offline.WPF.Views.Students;
 using MahApps.Metro.Controls;
 
 namespace Grades.Offline.WPF.Views
@@ -82,5 +83,7 @@ namespace Grades.Offline.WPF.Views
         private void CreateClassButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new CreateClassPage());
 
         private void QueryAllClassesButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new ClassListPage());
+
+        private void CreateStudentButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new CreateStudentPage());
     }
 }
