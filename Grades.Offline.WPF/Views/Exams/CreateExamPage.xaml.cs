@@ -31,11 +31,8 @@ namespace Grades.Offline.WPF.Views.Exams
 
             InitializeComponent();
             DataContext = this;
-        }
 
-        // If we do this in constructor, the ClassSelector will be NULL, will throw exceptions
-        private void ClassSelector_Loaded(object sender, RoutedEventArgs e)
-        {
+            #region InitialClassSelector
             var dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -47,16 +44,76 @@ namespace Grades.Offline.WPF.Views.Exams
             _dbContext.Classes.ToList().ForEach(c => dataTable.Rows.Add(c.Id, c.Name));
             ClassSelector.ItemsSource = dataTable.DefaultView;
             ClassSelector.SelectedIndex = 0;
+            #endregion
         }
 
-        // Examiee is Student
-        private void ExamieeList_Loaded(object sender, RoutedEventArgs e)
+        // Selected a class, update the student name list
+        private void ClassSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
-            dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
-            // Checkbox property
-            dataTable.Columns.Add(new DataColumn("Attended", typeof(bool)));
+            // Which class?
+            var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
+            var classId = (Guid)selectedRowElementArray.ElementAt(0);
+            var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId);
+
+            if (ClassSelector.SelectedItem != null)
+            {
+                #region UpdateStudentList
+                {
+                    var dataTable = new DataTable();
+                    dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
+                    dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+                    // Checkbox property
+                    dataTable.Columns.Add(new DataColumn("Attended", typeof(bool)));
+
+                    // If selected a class, then add students to list
+                    // If not, leave it empty
+                    if (@class != null)
+                    {
+                        _dbContext.Students
+                            .Where(s => s.Class == @class)
+                            .ToList()
+                            .ForEach(s =>
+                            {
+                                dataTable.Rows.Add(s.Id, s.FullName, false);
+                            });
+                    }
+
+                    ExamieeList.ItemsSource = dataTable.DefaultView;
+                }
+
+                #endregion
+
+                #region UpdateSubjectList
+                {
+                    var dataTable = new DataTable();
+                    dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
+                    dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+                    // Checkbox property
+                    dataTable.Columns.Add(new DataColumn("Attended", typeof(bool)));
+
+                    // If selected a class, then add students to list
+                    // If not, leave it empty
+                    if (@class != null)
+                    {
+                        _dbContext.Subjects
+                            .Where(s => s.Class == @class)
+                            .ToList()
+                            .ForEach(s =>
+                            {
+                                dataTable.Rows.Add(s.Id, s.Name, false);
+                            });
+                    }
+
+                    SubjectList.ItemsSource = dataTable.DefaultView;
+                }
+
+                #endregion
+            }
+        }
+
+        private void DoneButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

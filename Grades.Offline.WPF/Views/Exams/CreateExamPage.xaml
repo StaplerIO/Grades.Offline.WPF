@@ -17,47 +17,72 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create Exam" />
-        <Grid
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}"
-            Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <StackPanel Orientation="Vertical">
-                <Expander Header="Basic information" IsExpanded="True">
-                    <StackPanel Margin="10">
-                        <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
-                            <Label Content="For class:"/>
-                            <ComboBox Name="ClassSelector" DisplayMemberPath="Name" Loaded="ClassSelector_Loaded"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="Name:"/>
-                            <TextBox x:Name="ExamNameTextBox"
+            Text="Create Exam"/>
+        <ScrollViewer Grid.Row="1">
+            <Grid
+                Margin="{StaticResource MediumLeftRightMargin}"
+                Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel Orientation="Vertical">
+                    <Expander Header="Basic information" IsExpanded="True">
+                        <StackPanel Margin="10">
+                            <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
+                                <Label Content="For class:"/>
+                                <ComboBox Name="ClassSelector" DisplayMemberPath="Name" SelectionChanged="ClassSelector_SelectionChanged"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Name:"/>
+                                <TextBox x:Name="ExamNameTextBox"
                              MaxLength="100"
                              TextWrapping="NoWrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
+                                <Label Content="Date:"/>
+                                <DatePicker Name="ExamDate"/>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
-                            <Label Content="Date:"/>
-                            <DatePicker Name="ExamDate"/>
-                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Subjects">
+                        <ListView Name="SubjectList">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Attended?">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Expander>
+                    <Expander Header="Examinees">
+                        <ListView Name="ExamieeList">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Attended?">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Expander>
+                    <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
+                        <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
+                        <mah:ProgressRing Height="19" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                     </StackPanel>
-                </Expander>
-                <Expander Header="Examinees">
-                    <ListView Name="ExamieeList" Loaded="ExamieeList_Loaded">
-                        <GridView>
-                            <GridView.Columns>
-                                <GridViewColumn Header="Attended?">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <CheckBox/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Name"/>
-                            </GridView.Columns>
-                        </GridView>
-                    </ListView>
-                </Expander>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

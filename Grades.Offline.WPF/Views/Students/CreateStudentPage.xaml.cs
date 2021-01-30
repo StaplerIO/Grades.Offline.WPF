@@ -67,6 +67,7 @@ namespace Grades.Offline.WPF.Views.Students
             ProgressRing.Visibility = Visibility.Hidden;
         }
 
+        // Only allow integers, no decimal or string
         private void StudentSnoTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!int.TryParse(e.Text, out _))

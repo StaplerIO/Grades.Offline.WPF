@@ -12,6 +12,7 @@ using Grades.Offline.WPF.Views;
 using Grades.Offline.WPF.Views.Classes;
 using Grades.Offline.WPF.Views.Exams;
 using Grades.Offline.WPF.Views.Students;
+using Grades.Offline.WPF.Views.Subjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -68,8 +69,6 @@ namespace Grades.Offline.WPF
             services.AddSingleton<IRightPaneService, RightPaneService>();
             services.AddSingleton<INavigationService, NavigationService>();
 
-            services.AddSingleton<ExamService>();
-
             // Views
             services.AddTransient<IShellWindow, ShellWindow>();
 
@@ -82,6 +81,8 @@ namespace Grades.Offline.WPF
             services.AddTransient<CreateExamPage>();
 
             services.AddTransient<CreateStudentPage>();
+
+            services.AddTransient<CreateSubjectPage>();
 
             services.AddTransient<SettingsPage>();
 
