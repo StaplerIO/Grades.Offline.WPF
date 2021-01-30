@@ -71,11 +71,6 @@ namespace Grades.Offline.WPF.Views.Classes
 
         }
 
-        private void StudentList_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage());
 
         private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());

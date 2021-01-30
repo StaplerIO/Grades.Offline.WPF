@@ -2,6 +2,7 @@
 using Grades.Offline.WPF.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,8 @@ namespace Grades.Offline.WPF.Views.Classes
                 classList.Add(new ClassViewModel
                 {
                     Id = @class.Id,
-                    Name = @class.Name
+                    Name = @class.Name,
+                    StudentCount = dbContext.Students.Where(s => s.Class == @class).Count()
                 });
             }
 

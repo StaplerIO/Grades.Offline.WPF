@@ -10,6 +10,6 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
         public string Name { get; set; }
 
-        public int StudentCount { get; set; } = 0;
+        public int StudentCount { get; set; } = -1;
     }
 }
