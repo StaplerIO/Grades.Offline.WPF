@@ -1,6 +1,8 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Models.ViewModels;
+using Grades.Offline.WPF.Views.Exams;
+using Grades.Offline.WPF.Views.Subjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,15 +36,8 @@ namespace Grades.Offline.WPF.Views.Classes
 
             ClassNameLabel.Content = $"Class: {_class.Name}";
             ClassIdLabel.Content = _class.Id;
-        }
 
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void StudentList_Loaded(object sender, RoutedEventArgs e)
-        {
+            #region InitialStudentList
             var students = _dbContext.Students
                 .Where(s => s.Class == _class)
                 .ToList();
@@ -60,6 +55,29 @@ namespace Grades.Offline.WPF.Views.Classes
                 });
             }
             StudentList.ItemsSource = studentViewList;
+            #endregion
+
+            #region InitialSubjectList
+            var subjects = _dbContext.Subjects
+               .Where(s => s.Class == _class)
+               .ToList();
+
+            SubjectList.ItemsSource = subjects;
+            #endregion
         }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void StudentList_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage());
+
+        private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());
     }
 }

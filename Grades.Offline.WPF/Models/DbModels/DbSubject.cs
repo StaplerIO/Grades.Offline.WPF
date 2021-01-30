@@ -9,5 +9,7 @@ namespace Grades.Offline.WPF.Models.DbModels
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public DbClass Class { get; set; }
     }
 }
