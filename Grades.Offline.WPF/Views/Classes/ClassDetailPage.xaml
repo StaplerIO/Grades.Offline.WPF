@@ -42,6 +42,9 @@
                     <Button Name="CreateExamButton" BorderThickness="0" Click="CreateExamButton_Click" Foreground="CadetBlue">
                         <TextBlock><Underline>Create Exam</Underline></TextBlock>
                     </Button>
+                    <Button Name="AddStudentButton" BorderThickness="0" Click="AddStudentButton_Click" Foreground="CadetBlue">
+                        <TextBlock><Underline>Add student</Underline></TextBlock>
+                    </Button>
                 </StackPanel>
             </StackPanel>
             <ScrollViewer Grid.Column="2" Grid.ColumnSpan="3">

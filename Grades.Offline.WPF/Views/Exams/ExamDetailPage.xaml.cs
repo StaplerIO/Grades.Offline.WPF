@@ -44,6 +44,7 @@ namespace Grades.Offline.WPF.Views.Exams
         {
             var dataTable = new DataTable();
 
+            #region DataTableColumns
             dataTable.Columns.Add("Student");
             var examSummary = Exam.StudentScores;
             examSummary.SubjectScores.ForEach(subjectScore =>
@@ -52,7 +53,9 @@ namespace Grades.Offline.WPF.Views.Exams
                 dataTable.Columns.Add($"{subject.Name} ({subjectScore.TotalScore})");
             });
             dataTable.Columns.Add($"Total ({examSummary.TotalScore})");
+            #endregion
 
+            #region DataTableRows
             examSummary.StudentScores.ForEach(studentScore =>
             {
                 var student = _dbContext.Students.FirstOrDefault(s => s.Id == studentScore.StudentId);
@@ -74,6 +77,7 @@ namespace Grades.Offline.WPF.Views.Exams
             });
 
             // dataTable.Rows.Add("Average", new { });
+            #endregion
 
             RankTable.ItemsSource = dataTable.DefaultView;
         }

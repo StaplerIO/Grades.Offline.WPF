@@ -85,8 +85,6 @@ namespace Grades.Offline.WPF.Views
 
         private void CreateExamButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new CreateExamPage());
 
-        private void QueryAllClassesButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new ClassListPage());
-
-        private void CreateStudentButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new CreateStudentPage());
+        private void ViewAllClassButton_Click(object sender, RoutedEventArgs e) => shellFrame.Navigate(new ClassListPage());
     }
 }

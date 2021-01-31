@@ -2,6 +2,7 @@
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Models.ViewModels;
 using Grades.Offline.WPF.Views.Exams;
+using Grades.Offline.WPF.Views.Students;
 using Grades.Offline.WPF.Views.Subjects;
 using System;
 using System.Collections.Generic;
@@ -83,5 +84,7 @@ namespace Grades.Offline.WPF.Views.Classes
         private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage());
 
         private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());
-            }
+
+        private void AddStudentButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateStudentPage());
+    }
 }
