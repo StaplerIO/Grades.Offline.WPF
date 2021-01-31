@@ -113,42 +113,56 @@ namespace Grades.Offline.WPF.Views.Exams
             }
         }
 
-        private void DoneButton_Click(object sender, RoutedEventArgs e)
+        private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            var attendedStudents = new List<Guid>();
-            var attendedSubjects = new List<Guid>();
-
-            foreach (var examieeRow in ExamieeList.Items)
+            // Validate data input
+            if (!string.IsNullOrWhiteSpace(ExamNameTextBox.Text) && ExamDate.SelectedDate.HasValue)
             {
-                var rowData = ((DataRowView)examieeRow).Row;
+                // Disable all input
+                ExamNameTextBox.IsEnabled = false;
+                ExamDate.IsEnabled = false;
+                ExamieeList.IsEnabled = false;
+                SubjectList.IsEnabled = false;
 
-                Guid studentId = (Guid)rowData.ItemArray[0];
-                bool isAttended = (bool)rowData.ItemArray[2];
-                if (isAttended)
+                NextButton.Visibility = Visibility.Collapsed;
+                ProgressRing.Visibility = Visibility.Visible;
+
+                var attendedStudentsId = new List<Guid>();
+                var attendedSubjectsId = new List<Guid>();
+
+                foreach (var examieeRow in ExamieeList.Items)
                 {
-                    attendedStudents.Add(studentId);
+                    var rowData = ((DataRowView)examieeRow).Row;
+
+                    Guid studentId = (Guid)rowData.ItemArray[0];
+                    bool isAttended = (bool)rowData.ItemArray[2];
+                    if (isAttended)
+                    {
+                        attendedStudentsId.Add(studentId);
+                    }
                 }
-            }
 
-            foreach (var subjectRow in SubjectList.Items)
-            {
-                var rowData = ((DataRowView)subjectRow).Row;
-
-                Guid subjectId = (Guid)rowData.ItemArray[0];
-                bool isAttended = (bool)rowData.ItemArray[2];
-                if (isAttended)
+                foreach (var subjectRow in SubjectList.Items)
                 {
-                    attendedSubjects.Add(subjectId);
+                    var rowData = ((DataRowView)subjectRow).Row;
+
+                    Guid subjectId = (Guid)rowData.ItemArray[0];
+                    bool isAttended = (bool)rowData.ItemArray[2];
+                    if (isAttended)
+                    {
+                        attendedSubjectsId.Add(subjectId);
+                    }
                 }
+
+                var scoreRecordWindow = new ScoreRecordWindow(attendedStudentsId, attendedSubjectsId, new DbExam { Name = ExamNameTextBox.Text, Date = ExamDate.SelectedDate.Value, ClassId = _selectedClass.Id });
+                scoreRecordWindow.Show();
+
+                scoreRecordWindow.Closed += (s, e) =>
+                {
+                    MessageBox.Show("Exam created successfully!", "Grades", MessageBoxButton.OK);
+                    NavigationService.Navigate(new ClassDetailPage(_selectedClass.Id));
+                };
             }
-
-            var scoreRecordWindow = new ScoreRecordWindow(attendedStudents, attendedSubjects, new DbExam { Name = ExamNameTextBox.Text, Date = ExamDate.SelectedDate.Value, ClassId = _selectedClass.Id });
-            scoreRecordWindow.Show();
-
-            scoreRecordWindow.Closed += (s, e) =>
-            {
-                NavigationService.Navigate(new ClassDetailPage(_selectedClass.Id));
-            };
         }
     }
 }

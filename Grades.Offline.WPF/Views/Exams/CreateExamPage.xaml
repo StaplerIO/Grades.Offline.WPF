@@ -78,7 +78,7 @@
                         </ListView>
                     </Expander>
                     <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                        <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
+                        <Button x:Name="NextButton" Click="NextButton_Click" Content="Next"/>
                         <mah:ProgressRing Height="19" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                     </StackPanel>
                 </StackPanel>

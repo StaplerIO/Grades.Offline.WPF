@@ -1,5 +1,6 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
+using Grades.Offline.WPF.Views.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,22 +47,28 @@ namespace Grades.Offline.WPF.Views.Subjects
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            DoneButton.Visibility = Visibility.Collapsed;
-            ProgressRing.Visibility = Visibility.Visible;
-
-            var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
-            var classId = (Guid)selectedRowElementArray.ElementAt(0);
-
-            _dbContext.Subjects.Add(new DbSubject
+            if (!string.IsNullOrWhiteSpace(SubjectNameTextBox.Text) && ClassSelector.SelectedIndex != 0)
             {
-                Name = SubjectNameTextBox.Text,
-                ClassId = classId
-            });
+                DoneButton.Visibility = Visibility.Collapsed;
+                ProgressRing.Visibility = Visibility.Visible;
 
-            await _dbContext.SaveChangesAsync();
+                var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
+                var classId = (Guid)selectedRowElementArray.ElementAt(0);
 
-            DoneButton.Visibility = Visibility.Visible;
-            ProgressRing.Visibility = Visibility.Hidden;
+                _dbContext.Subjects.Add(new DbSubject
+                {
+                    Name = SubjectNameTextBox.Text,
+                    ClassId = classId
+                });
+
+                await _dbContext.SaveChangesAsync();
+
+                DoneButton.Visibility = Visibility.Visible;
+                ProgressRing.Visibility = Visibility.Hidden;
+
+                MessageBox.Show("Subject created successfully!", "Grades", MessageBoxButton.OK);
+                NavigationService.Navigate(new ClassDetailPage(classId));
+            }
         }
     }
 }

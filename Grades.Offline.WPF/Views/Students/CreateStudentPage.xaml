@@ -38,7 +38,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0, 5, 0, 0">
                     <Label Content="Class"/>
-                    <ComboBox Name="ClassSelector" DisplayMemberPath="Name" Loaded="ClassSelector_Loaded"/>
+                    <ComboBox Name="ClassSelector" DisplayMemberPath="Name"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
                     <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>

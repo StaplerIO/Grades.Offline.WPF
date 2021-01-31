@@ -1,5 +1,6 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
+using Grades.Offline.WPF.Views.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,11 +29,8 @@ namespace Grades.Offline.WPF.Views.Students
         {
             _dbContext = new ApplicationDbContext();
             InitializeComponent();
-        }
 
-        // If we do this in constructor, the ClassSelector will be NULL, will throw exceptions
-        private void ClassSelector_Loaded(object sender, RoutedEventArgs e)
-        {
+            #region InitialClassSelector
             var dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -44,27 +42,34 @@ namespace Grades.Offline.WPF.Views.Students
             _dbContext.Classes.ToList().ForEach(c => dataTable.Rows.Add(c.Id, c.Name));
             ClassSelector.ItemsSource = dataTable.DefaultView;
             ClassSelector.SelectedIndex = 0;
+            #endregion
         }
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            DoneButton.Visibility = Visibility.Collapsed;
-            ProgressRing.Visibility = Visibility.Visible;
-
-            var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
-            var classId = (Guid)selectedRowElementArray.ElementAt(0);
-
-            _dbContext.Students.Add(new DbStudent
+            if (!string.IsNullOrWhiteSpace(StudentNameTextBox.Text) && !string.IsNullOrWhiteSpace(StudentSnoTextBox.Text) && ClassSelector.SelectedIndex != 0)
             {
-                FullName = StudentNameTextBox.Text,
-                Sno = int.Parse(StudentSnoTextBox.Text),
-                ClassId = classId
-            });
+                DoneButton.Visibility = Visibility.Collapsed;
+                ProgressRing.Visibility = Visibility.Visible;
 
-            await _dbContext.SaveChangesAsync();
+                var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
+                var classId = (Guid)selectedRowElementArray.ElementAt(0);
 
-            DoneButton.Visibility = Visibility.Visible;
-            ProgressRing.Visibility = Visibility.Hidden;
+                _dbContext.Students.Add(new DbStudent
+                {
+                    FullName = StudentNameTextBox.Text,
+                    Sno = int.Parse(StudentSnoTextBox.Text),
+                    ClassId = classId
+                });
+
+                await _dbContext.SaveChangesAsync();
+
+                DoneButton.Visibility = Visibility.Visible;
+                ProgressRing.Visibility = Visibility.Hidden;
+
+                MessageBox.Show("Stuent created successfully!", "Grades", MessageBoxButton.OK);
+                NavigationService.Navigate(new ClassDetailPage(classId));
+            }
         }
 
         // Only allow integers, no decimal or string
