@@ -63,7 +63,7 @@ namespace Grades.Offline.WPF.Views.Exams
                 var rowData = new List<object>();
 
                 rowData.Add($"({student.Sno}) {student.FullName}");
-                for(int i = 0; i < studentScore.SubjectScored.Count; i++)
+                for (int i = 0; i < studentScore.SubjectScored.Count; i++)
                 {
                     var subject = examSummary.SubjectScores[i];
                     var subjectScore = studentScore.SubjectScored[subject.SubjectId];
@@ -82,9 +82,20 @@ namespace Grades.Offline.WPF.Views.Exams
             RankTable.ItemsSource = dataTable.DefaultView;
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            Exam.Name = ExamNameTextBox.Text;
+            if (ExamDatePicker.SelectedDate.HasValue)
+            {
+                Exam.Date = ExamDatePicker.SelectedDate.Value;
+            }
 
+            _dbContext.Exams.Update(Exam);
+            await _dbContext.SaveChangesAsync();
+
+            // reload page
+            DataContext = null;
+            DataContext = new ExamDetailPage(Exam.Id);
         }
     }
 }

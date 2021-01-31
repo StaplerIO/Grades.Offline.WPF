@@ -29,6 +29,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <!--
             Learn more about using Fluent.Ribbon Control at
@@ -54,7 +55,7 @@
                 </i:Interaction.Behaviors>
 
                 <!--Tabs-->
-                
+
                 <!--Class zone-->
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
@@ -106,7 +107,7 @@
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>
-                
+
             <controls:SplitView
                 Grid.Row="1"
                 x:Name="splitView"
@@ -129,6 +130,12 @@
                         NavigationUIVisibility="Hidden" />
                 </controls:SplitView.Content>
             </controls:SplitView>
+
+            <Fluent:StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1">
+                <Fluent:StatusBarItem Title="Status" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
+                    <TextBlock Text="Loading..." Name="StatusText" />
+                </Fluent:StatusBarItem>
+            </Fluent:StatusBar>
         </Grid>
     </controls:MetroWindow.Content>
 </controls:MetroWindow>

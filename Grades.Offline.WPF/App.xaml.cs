@@ -88,8 +88,6 @@ namespace Grades.Offline.WPF
 
             services.AddTransient<SettingsPage>();
 
-            services.AddTransient<IShellDialogWindow, ShellDialogWindow>();
-
             // Configuration
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 

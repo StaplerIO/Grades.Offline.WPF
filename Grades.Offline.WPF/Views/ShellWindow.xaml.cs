@@ -9,6 +9,7 @@ using Fluent;
 using Grades.Offline.WPF.Behaviors;
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
+using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Views.Classes;
 using Grades.Offline.WPF.Views.Exams;
 using Grades.Offline.WPF.Views.Students;
@@ -19,6 +20,7 @@ namespace Grades.Offline.WPF.Views
     public partial class ShellWindow : MetroWindow, IShellWindow, IRibbonWindow, INotifyPropertyChanged
     {
         private readonly IRightPaneService _rightPaneService;
+        private readonly ApplicationDbContext _dbContext;
 
         public RibbonTitleBar TitleBar
         {
@@ -32,6 +34,7 @@ namespace Grades.Offline.WPF.Views
 
         public ShellWindow(IServiceProvider serviceProvider, IRightPaneService rightPaneService)
         {
+            _dbContext = new ApplicationDbContext();
             _rightPaneService = rightPaneService;
             InitializeComponent();
             navigationBehavior.Initialize(serviceProvider);
@@ -62,6 +65,8 @@ namespace Grades.Offline.WPF.Views
             TitleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
             TitleBar.InvalidateArrange();
             TitleBar.UpdateLayout();
+
+            StatusText.Text = "Ready";
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e) => tabsBehavior.Unsubscribe();
