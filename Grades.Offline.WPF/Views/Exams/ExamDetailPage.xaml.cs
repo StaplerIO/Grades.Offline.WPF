@@ -37,6 +37,8 @@ namespace Grades.Offline.WPF.Views.Exams
             ExamNameTextBox.Text = Exam.Name;
             ExamDatePicker.SelectedDate = Exam.Date;
 
+            TotalScoreLabel.Content = Exam.StudentScores.TotalScore.ToString();
+
             InitiateRankTable();
         }
 
