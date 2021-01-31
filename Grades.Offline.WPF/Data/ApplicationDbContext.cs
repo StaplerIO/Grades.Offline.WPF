@@ -11,6 +11,8 @@ namespace Grades.Offline.WPF.Data
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlite("Data Source=App.db");
+            builder.EnableSensitiveDataLogging();
+            builder.EnableDetailedErrors();
         }
 
         public DbSet<DbClass> Classes { get; set; }

@@ -49,7 +49,7 @@
                                         <GridViewColumn Header="Attended?">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox/>
+                                                    <CheckBox IsChecked="{Binding Attended}"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -67,7 +67,7 @@
                                         <GridViewColumn Header="Attended?">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox/>
+                                                    <CheckBox IsChecked="{Binding Attended}"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>

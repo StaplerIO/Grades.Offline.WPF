@@ -39,30 +39,38 @@ namespace Grades.Offline.WPF.Views.Classes
 
             #region InitialStudentList
             var students = _dbContext.Students
-                .Where(s => s.Class == _class)
+                .Where(s => s.ClassId == classId)
                 .ToList();
 
             // Sort by Sno
             students.Sort((a, b) => a.Sno.CompareTo(b.Sno));
 
-            var studentViewList = new List<StudentViewModel>();
-            foreach (var student in students)
+            StudentList.ItemsSource = students.ConvertAll(s => new StudentIndexViewModel
             {
-                studentViewList.Add(new StudentViewModel
-                {
-                    Sno = student.Sno,
-                    FullName = student.FullName
-                });
-            }
-            StudentList.ItemsSource = studentViewList;
+                Sno = s.Sno,
+                FullName = s.FullName
+            });
             #endregion
 
             #region InitialSubjectList
             var subjects = _dbContext.Subjects
-               .Where(s => s.Class == _class)
+               .Where(s => s.ClassId == classId)
                .ToList();
 
             SubjectList.ItemsSource = subjects;
+            #endregion
+
+            #region InitialExamList
+            var exams = _dbContext.Exams
+                .Where(e => e.ClassId == classId)
+                .ToList();
+
+            ExamList.ItemsSource = exams.ConvertAll(e => new ExamIndexViewModel
+            {
+                ExamId = e.Id,
+                Name = e.Name,
+                DateString = e.Date.ToShortDateString()
+            });
             #endregion
         }
 

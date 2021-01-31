@@ -3,14 +3,16 @@ using System;
 using Grades.Offline.WPF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Grades.Offline.WPF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210130144115_ExamScoreRecord")]
+    partial class ExamScoreRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,6 @@ namespace Grades.Offline.WPF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClassId")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -59,7 +58,7 @@ namespace Grades.Offline.WPF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClassId")
+                    b.Property<Guid?>("ClassId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
@@ -70,6 +69,8 @@ namespace Grades.Offline.WPF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassId");
+
                     b.ToTable("Students");
                 });
 
@@ -79,7 +80,7 @@ namespace Grades.Offline.WPF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ClassId")
+                    b.Property<Guid?>("ClassId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -87,7 +88,32 @@ namespace Grades.Offline.WPF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassId");
+
                     b.ToTable("Subjects");
+                });
+
+            modelBuilder.Entity("Grades.Offline.WPF.Models.DbModels.DbStudent", b =>
+                {
+                    b.HasOne("Grades.Offline.WPF.Models.DbModels.DbClass", "Class")
+                        .WithMany("Students")
+                        .HasForeignKey("ClassId");
+
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("Grades.Offline.WPF.Models.DbModels.DbSubject", b =>
+                {
+                    b.HasOne("Grades.Offline.WPF.Models.DbModels.DbClass", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassId");
+
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("Grades.Offline.WPF.Models.DbModels.DbClass", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

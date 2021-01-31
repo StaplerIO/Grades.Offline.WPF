@@ -1,6 +1,7 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Models.ViewModels;
+using Grades.Offline.WPF.Views.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,6 +25,8 @@ namespace Grades.Offline.WPF.Views.Exams
     public partial class CreateExamPage : Page
     {
         private readonly ApplicationDbContext _dbContext;
+
+        private DbClass _selectedClass;
 
         public CreateExamPage()
         {
@@ -53,7 +56,7 @@ namespace Grades.Offline.WPF.Views.Exams
             // Which class?
             var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
             var classId = (Guid)selectedRowElementArray.ElementAt(0);
-            var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId);
+            var @class = _selectedClass = _dbContext.Classes.FirstOrDefault(c => c.Id == classId);
 
             if (ClassSelector.SelectedItem != null)
             {
@@ -70,7 +73,7 @@ namespace Grades.Offline.WPF.Views.Exams
                     if (@class != null)
                     {
                         _dbContext.Students
-                            .Where(s => s.Class == @class)
+                            .Where(s => s.ClassId == classId)
                             .ToList()
                             .ForEach(s =>
                             {
@@ -96,7 +99,7 @@ namespace Grades.Offline.WPF.Views.Exams
                     if (@class != null)
                     {
                         _dbContext.Subjects
-                            .Where(s => s.Class == @class)
+                            .Where(s => s.ClassId == classId)
                             .ToList()
                             .ForEach(s =>
                             {
@@ -106,14 +109,46 @@ namespace Grades.Offline.WPF.Views.Exams
 
                     SubjectList.ItemsSource = dataTable.DefaultView;
                 }
-
                 #endregion
             }
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            var attendedStudents = new List<Guid>();
+            var attendedSubjects = new List<Guid>();
 
+            foreach (var examieeRow in ExamieeList.Items)
+            {
+                var rowData = ((DataRowView)examieeRow).Row;
+
+                Guid studentId = (Guid)rowData.ItemArray[0];
+                bool isAttended = (bool)rowData.ItemArray[2];
+                if (isAttended)
+                {
+                    attendedStudents.Add(studentId);
+                }
+            }
+
+            foreach (var subjectRow in SubjectList.Items)
+            {
+                var rowData = ((DataRowView)subjectRow).Row;
+
+                Guid subjectId = (Guid)rowData.ItemArray[0];
+                bool isAttended = (bool)rowData.ItemArray[2];
+                if (isAttended)
+                {
+                    attendedSubjects.Add(subjectId);
+                }
+            }
+
+            var scoreRecordWindow = new ScoreRecordWindow(attendedStudents, attendedSubjects, new DbExam { Name = ExamNameTextBox.Text, Date = ExamDate.SelectedDate.Value, ClassId = _selectedClass.Id });
+            scoreRecordWindow.Show();
+
+            scoreRecordWindow.Closed += (s, e) =>
+            {
+                NavigationService.Navigate(new ClassDetailPage(_selectedClass.Id));
+            };
         }
     }
 }

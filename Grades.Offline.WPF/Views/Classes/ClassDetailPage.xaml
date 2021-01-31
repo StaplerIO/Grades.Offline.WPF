@@ -44,37 +44,39 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="2" Grid.ColumnSpan="3">
-                <Expander Header="Exams" IsExpanded="True">
-                    <ListView Name="ExamList">
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="true">
-                                <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Width="Auto" Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Expander>
-                <Expander Header="Students" IsExpanded="False">
-                    <ListView Name="StudentList">
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="true">
-                                <GridViewColumn Width="Auto" Header="Sno" DisplayMemberBinding="{Binding Sno}"/>
-                                <GridViewColumn Width="Auto" Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Expander>
-                <Expander Header="Subjects" IsExpanded="False">
-                    <ListView Name="SubjectList">
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="true">
-                                <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Expander>
-            </StackPanel>
+            <ScrollViewer Grid.Column="2" Grid.ColumnSpan="3">
+                <StackPanel>
+                    <Expander Header="Exams" IsExpanded="True">
+                        <ListView Name="ExamList">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true">
+                                    <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Width="Auto" Header="Date" DisplayMemberBinding="{Binding DateString}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Expander>
+                    <Expander Header="Students" IsExpanded="False">
+                        <ListView Name="StudentList">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true">
+                                    <GridViewColumn Width="Auto" Header="Sno" DisplayMemberBinding="{Binding Sno}"/>
+                                    <GridViewColumn Width="Auto" Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Expander>
+                    <Expander Header="Subjects" IsExpanded="False">
+                        <ListView Name="SubjectList">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true">
+                                    <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

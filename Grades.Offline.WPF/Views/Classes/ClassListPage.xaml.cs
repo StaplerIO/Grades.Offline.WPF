@@ -33,7 +33,7 @@ namespace Grades.Offline.WPF.Views.Classes
                 {
                     Id = @class.Id,
                     Name = @class.Name,
-                    StudentCount = dbContext.Students.Where(s => s.Class == @class).Count()
+                    StudentCount = dbContext.Students.Where(s => s.ClassId == @class.Id).Count()
                 });
             }
 

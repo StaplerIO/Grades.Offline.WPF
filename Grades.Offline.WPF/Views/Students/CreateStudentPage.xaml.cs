@@ -58,7 +58,7 @@ namespace Grades.Offline.WPF.Views.Students
             {
                 FullName = StudentNameTextBox.Text,
                 Sno = int.Parse(StudentSnoTextBox.Text),
-                Class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId)
+                ClassId = classId
             });
 
             await _dbContext.SaveChangesAsync();

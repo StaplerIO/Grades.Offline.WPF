@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Grades.Offline.WPF.Models.ViewModels
 {
-    class StudentViewModel
+    class StudentIndexViewModel
     {
         public int Sno { get; set; }
 

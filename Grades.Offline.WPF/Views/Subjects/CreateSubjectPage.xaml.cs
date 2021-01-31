@@ -55,7 +55,7 @@ namespace Grades.Offline.WPF.Views.Subjects
             _dbContext.Subjects.Add(new DbSubject
             {
                 Name = SubjectNameTextBox.Text,
-                Class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId)
+                ClassId = classId
             });
 
             await _dbContext.SaveChangesAsync();

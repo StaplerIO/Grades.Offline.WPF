@@ -79,6 +79,7 @@ namespace Grades.Offline.WPF
             services.AddTransient<ClassListPage>();
 
             services.AddTransient<CreateExamPage>();
+            services.AddTransient<ScoreRecordWindow>();
 
             services.AddTransient<CreateStudentPage>();
 
@@ -93,10 +94,7 @@ namespace Grades.Offline.WPF
 
             // Database
             // services.AddDbContext<ApplicationDbContext>();
-            using(ApplicationDbContext dbContext = new ApplicationDbContext())
-            {
-                dbContext.Database.Migrate();
-            }
+            new ApplicationDbContext().Database.Migrate();
         }
 
         private async void OnExit(object sender, ExitEventArgs e)
