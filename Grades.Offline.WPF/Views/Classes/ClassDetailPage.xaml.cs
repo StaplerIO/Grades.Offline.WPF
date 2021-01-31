@@ -74,13 +74,14 @@ namespace Grades.Offline.WPF.Views.Classes
             #endregion
         }
 
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ExamList_ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            var viewModel = ((ListViewItem)sender).Content as ExamIndexViewModel;
+            NavigationService.Navigate(new ExamDetailPage(viewModel.ExamId));
         }
 
         private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage());
 
         private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());
-    }
+            }
 }

@@ -10,5 +10,19 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
         // <SubjectId, SubjectScored>
         public Dictionary<Guid, decimal> SubjectScored { get; set; }
+
+        public decimal TotalScore
+        {
+            get
+            {
+                decimal value = decimal.Zero;
+                foreach (var score in SubjectScored)
+                {
+                    value += score.Value;
+                }
+
+                return value;
+            }
+        }
     }
 }

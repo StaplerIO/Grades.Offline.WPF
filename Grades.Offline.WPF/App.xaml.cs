@@ -80,6 +80,7 @@ namespace Grades.Offline.WPF
 
             services.AddTransient<CreateExamPage>();
             services.AddTransient<ScoreRecordWindow>();
+            services.AddTransient<ExamDetailPage>();
 
             services.AddTransient<CreateStudentPage>();
 
