@@ -29,6 +29,7 @@ namespace Grades.Offline.WPF.Views.Subjects
         {
             _dbContext = new ApplicationDbContext();
             InitializeComponent();
+            DataContext = this;
 
             #region InitialClassList
             var dataTable = new DataTable();
@@ -47,6 +48,7 @@ namespace Grades.Offline.WPF.Views.Subjects
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            // These fields are required
             if (!string.IsNullOrWhiteSpace(SubjectNameTextBox.Text) && ClassSelector.SelectedIndex != 0)
             {
                 DoneButton.Visibility = Visibility.Collapsed;

@@ -47,6 +47,7 @@ namespace Grades.Offline.WPF.Views.Students
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            // These fieldsa are required
             if (!string.IsNullOrWhiteSpace(StudentNameTextBox.Text) && !string.IsNullOrWhiteSpace(StudentSnoTextBox.Text) && ClassSelector.SelectedIndex != 0)
             {
                 DoneButton.Visibility = Visibility.Collapsed;

@@ -32,24 +32,28 @@ namespace Grades.Offline.WPF.Views.Classes
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
-            DoneButton.Visibility = Visibility.Collapsed;
-            ProgressRing.Visibility = Visibility.Visible;
+            // Class name is required
             if (!string.IsNullOrWhiteSpace(ClassNameTextBox.Text))
             {
-                var entity = _dbContext.Classes.Add(new DbClass
+                DoneButton.Visibility = Visibility.Collapsed;
+                ProgressRing.Visibility = Visibility.Visible;
+                if (!string.IsNullOrWhiteSpace(ClassNameTextBox.Text))
                 {
-                    Name = ClassNameTextBox.Text
-                }).Entity;
-                await _dbContext.SaveChangesAsync();
+                    var entity = _dbContext.Classes.Add(new DbClass
+                    {
+                        Name = ClassNameTextBox.Text
+                    }).Entity;
+                    await _dbContext.SaveChangesAsync();
 
-                // Tell user that the class has been created
-                MessageBox.Show("Class created successfully!", "Grades", MessageBoxButton.OK);
+                    // Tell user that the class has been created
+                    MessageBox.Show("Class created successfully!", "Grades", MessageBoxButton.OK);
 
-                NavigationService.Navigate(new ClassDetailPage(entity.Id));
+                    NavigationService.Navigate(new ClassDetailPage(entity.Id));
+                }
+
+                DoneButton.Visibility = Visibility.Visible;
+                ProgressRing.Visibility = Visibility.Hidden;
             }
-
-            DoneButton.Visibility = Visibility.Visible;
-            ProgressRing.Visibility = Visibility.Hidden;
         }
     }
 }
