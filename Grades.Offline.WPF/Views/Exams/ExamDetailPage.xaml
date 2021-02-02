@@ -50,9 +50,9 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                                 <Label Content="Show average score"/>
-                                <mah:ToggleSwitch>
+                                <mah:ToggleSwitch Name="ShowAverageScoreSwitch" Toggled="ShowAverageScoreSwitch_Toggled">
                                     <mah:ToggleSwitch.RenderTransform>
-                                        <ScaleTransform ScaleX=".8" ScaleY=".8"></ScaleTransform>
+                                        <ScaleTransform ScaleX=".8" ScaleY=".8"/>
                                     </mah:ToggleSwitch.RenderTransform>
                                 </mah:ToggleSwitch>
                             </StackPanel>

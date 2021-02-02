@@ -1,5 +1,7 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
+using Grades.Offline.WPF.Models.ViewModels;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +27,8 @@ namespace Grades.Offline.WPF.Views.Exams
         private readonly ApplicationDbContext _dbContext;
         private DbExam Exam { get; set; }
 
+        private DataTable _dataTable { get; set; } = new DataTable();
+
         public ExamDetailPage(Guid examId)
         {
             _dbContext = new ApplicationDbContext();
@@ -44,17 +48,17 @@ namespace Grades.Offline.WPF.Views.Exams
 
         private void InitiateRankTable()
         {
-            var dataTable = new DataTable();
+            _dataTable = new DataTable();
 
             #region DataTableColumns
-            dataTable.Columns.Add("Student");
+            _dataTable.Columns.Add("Student");
             var examSummary = Exam.StudentScores;
             examSummary.SubjectScores.ForEach(subjectScore =>
             {
                 var subject = _dbContext.Subjects.FirstOrDefault(s => s.Id == subjectScore.SubjectId);
-                dataTable.Columns.Add($"{subject.Name} ({subjectScore.TotalScore})");
+                _dataTable.Columns.Add($"{subject.Name} ({subjectScore.TotalScore})");
             });
-            dataTable.Columns.Add($"Total ({examSummary.TotalScore})");
+            _dataTable.Columns.Add($"Total ({examSummary.TotalScore})");
             #endregion
 
             #region DataTableRows
@@ -75,13 +79,14 @@ namespace Grades.Offline.WPF.Views.Exams
                 }
                 rowData.Add($"{studentScore.TotalScore} ({studentScore.TotalScore / examSummary.TotalScore * 100:#.##}%)");
 
-                dataTable.Rows.Add(rowData.ToArray());
+                _dataTable.Rows.Add(rowData.ToArray());
             });
 
-            // dataTable.Rows.Add("Average", new { });
+            // _dataTable.Rows.Add(AverageScoreRowData(examSummary));
+
             #endregion
 
-            RankTable.ItemsSource = dataTable.DefaultView;
+            RankTable.ItemsSource = _dataTable.DefaultView;
         }
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -98,6 +103,47 @@ namespace Grades.Offline.WPF.Views.Exams
             // reload page
             DataContext = null;
             DataContext = new ExamDetailPage(Exam.Id);
+        }
+
+        private void ShowAverageScoreSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            var toggler = (ToggleSwitch)sender;
+            if (toggler.IsOn)
+            {
+                _dataTable.Rows.Add(AverageScoreRowData(Exam.StudentScores));
+                RankTable.SelectedIndex = _dataTable.Rows.Count - 1;
+            }
+            else
+            {
+                _dataTable.Rows.RemoveAt(_dataTable.Rows.Count - 1);
+            }
+
+            // RankTable.ItemsSource = _dataTable.DefaultView;
+        }
+
+        private object[] AverageScoreRowData(ExamScoreSummary examSummary)
+        {
+            var averageScores = new List<object>
+            {
+                "[Average]"
+            };
+
+            examSummary.SubjectScores.ForEach(s =>
+            {
+                var currentAverage = examSummary.AverageScore(s.SubjectId);
+                var averagePercentage = currentAverage / s.TotalScore;
+                averageScores.Add($"{currentAverage:#.##} ({averagePercentage * 100:#.##}%)");
+            });
+
+            decimal averageTotalScore = 0;
+            examSummary.StudentScores.ForEach(s =>
+            {
+                averageTotalScore += s.TotalScore;
+            });
+            averageTotalScore /= examSummary.StudentScores.Count;
+            averageScores.Add($"{averageTotalScore:#.##} ({averageTotalScore / examSummary.TotalScore * 100:#.##}%)");
+
+            return averageScores.ToArray();
         }
     }
 }
