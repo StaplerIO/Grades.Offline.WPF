@@ -24,7 +24,7 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
         public List<ExamStudentScore> StudentScores { get; set; }
 
-        public decimal AverageScore(Guid subjectId)
+        public decimal SubjectAverageScore(Guid subjectId)
         {
             decimal average = 0;
 
@@ -37,6 +37,17 @@ namespace Grades.Offline.WPF.Models.ViewModels
             average /= StudentScores.Count;
 
             return average;
+        }
+
+        public decimal TotalAverageScore()
+        {
+
+            decimal averageTotalScore = 0;
+            StudentScores.ForEach(s =>
+            {
+                averageTotalScore += s.TotalScore;
+            });
+            return averageTotalScore /= StudentScores.Count;
         }
     }
 }
