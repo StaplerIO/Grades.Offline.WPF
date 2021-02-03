@@ -117,17 +117,17 @@ namespace Grades.Offline.WPF.Views.Exams
             {
                 _dataTable.Rows.RemoveAt(_dataTable.Rows.Count - 1);
             }
-
-            // RankTable.ItemsSource = _dataTable.DefaultView;
         }
 
         private object[] AverageScoreRowData(ExamScoreSummary examSummary)
         {
+            // Add first column (name)
             var averageScores = new List<object>
             {
                 "[Average]"
             };
-
+            
+            // Calculate each subject
             examSummary.SubjectScores.ForEach(s =>
             {
                 var currentAverage = examSummary.AverageScore(s.SubjectId);
@@ -136,6 +136,7 @@ namespace Grades.Offline.WPF.Views.Exams
             });
 
             decimal averageTotalScore = 0;
+            // Calculate total score
             examSummary.StudentScores.ForEach(s =>
             {
                 averageTotalScore += s.TotalScore;
