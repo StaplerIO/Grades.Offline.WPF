@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
+    xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -21,10 +21,27 @@
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <!--
-            The Mahapps Gray10 color represents where you should place your content.
-            Place your content here.
-            -->
+            <mah:MetroTabControl TabStripPlacement="Top" Style="{DynamicResource MahApps.Styles.TabControl.Animated}" IsSynchronizedWithCurrentItem="True" mah:HeaderedControlHelper.HeaderFontSize="14">
+                <TabItem Header="Overview">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <DockPanel>
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                                <Label Content="Name"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBox Name="SubjectNameTextBox" Text="@[Name]" Margin="7, 0, 0, 0"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
+                            <Button Name="UpdateButton" Click="UpdateButton_Click" Content="Update"/>
+                            <mah:ProgressRing Height="20" Width="20" Visibility="Hidden" Name="ProgressRing"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Graph">
+                    
+                </TabItem>
+            </mah:MetroTabControl>
         </Grid>
     </Grid>
 </Page>

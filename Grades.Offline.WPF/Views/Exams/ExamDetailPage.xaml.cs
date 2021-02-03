@@ -91,6 +91,9 @@ namespace Grades.Offline.WPF.Views.Exams
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            UpdateButton.Visibility = Visibility.Collapsed;
+            ProgressRing.Visibility = Visibility.Visible;
+
             Exam.Name = ExamNameTextBox.Text;
             if (ExamDatePicker.SelectedDate.HasValue)
             {

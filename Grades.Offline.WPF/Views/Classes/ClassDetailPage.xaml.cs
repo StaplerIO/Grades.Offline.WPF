@@ -86,5 +86,11 @@ namespace Grades.Offline.WPF.Views.Classes
         private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());
 
         private void AddStudentButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateStudentPage());
+
+        private void SubjectList_ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var targetSubject = ((ListViewItem)sender).Content as DbSubject;
+            NavigationService.Navigate(new SubjectDetailPage(targetSubject.Id));
+        }
     }
 }
