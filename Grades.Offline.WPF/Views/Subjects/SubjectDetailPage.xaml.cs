@@ -1,5 +1,7 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,10 @@ namespace Grades.Offline.WPF.Views.Subjects
 
         private DbSubject Subject { get; set; }
 
+        #region ChartOptions
+        public string[] ExamDates { get; set; }
+        #endregion
+
         public SubjectDetailPage(Guid subjectId)
         {
             _dbContext = new ApplicationDbContext();
@@ -34,6 +40,7 @@ namespace Grades.Offline.WPF.Views.Subjects
             DataContext = this;
 
             SubjectNameTextBox.Text = Subject.Name;
+            InitialGraph();
         }
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +59,61 @@ namespace Grades.Offline.WPF.Views.Subjects
 
             UpdateButton.Visibility = Visibility.Visible;
             ProgressRing.Visibility = Visibility.Hidden;
+        }
+
+        private void InitialGraph()
+        {
+            // Select exams in specific class 
+            var exams = _dbContext.Exams
+                .Where(e => e.ClassId == Subject.ClassId)
+                .ToList();
+
+            // Select the exams which contains current subject
+            exams = exams.Where(e => e.StudentScores.SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id) != null).ToList();
+
+            // Sort by date
+            exams.Sort((a, b) => a.Date.CompareTo(b.Date));
+
+            // Convet all dates from DateTime to ShortDateString
+            ExamDates = exams.Select(s => s.Date)
+                .ToList()
+                .ConvertAll(d => d.ToShortDateString())
+                .ToArray();
+
+            var examSummaries = exams.Select(e => e.StudentScores).ToList();
+            var graphValues = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Average Score",
+                    Values = new ChartValues<decimal>(),
+                    Fill = Brushes.Transparent,
+                    AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore
+                },
+                new LineSeries
+                {
+                    Title = "Highest Score",
+                    Values = new ChartValues<decimal>(),
+                    Fill = Brushes.Transparent,
+                    AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore
+                },
+                new LineSeries
+                {
+                    Title = "Lowest Score",
+                    Values = new ChartValues<decimal>(),
+                    Fill = Brushes.Transparent,
+                    AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore
+                },
+            };
+           
+            examSummaries.ForEach(e =>
+            {
+                graphValues[0].Values.Add(e.GetSubjectAverageScore(Subject.Id));
+                graphValues[1].Values.Add(e.GetHighestScoreBySubject(Subject.Id).Value);
+                graphValues[2].Values.Add(e.GetLowestScoreBySubject(Subject.Id).Value);
+            });
+
+            Chart.Series = graphValues;
         }
     }
 }

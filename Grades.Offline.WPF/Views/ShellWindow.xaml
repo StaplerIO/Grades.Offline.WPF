@@ -131,7 +131,7 @@
                 </controls:SplitView.Content>
             </controls:SplitView>
 
-            <Fluent:StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1">
+            <Fluent:StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" Visibility="Hidden">
                 <Fluent:StatusBarItem Title="Status" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
                     <TextBlock Text="Loading..." Name="StatusText" />
                 </Fluent:StatusBarItem>

@@ -65,8 +65,6 @@ namespace Grades.Offline.WPF.Views
             TitleBar = window.FindChild<RibbonTitleBar>("RibbonTitleBar");
             TitleBar.InvalidateArrange();
             TitleBar.UpdateLayout();
-
-            StatusText.Text = "Ready";
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e) => tabsBehavior.Unsubscribe();

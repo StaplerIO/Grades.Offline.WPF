@@ -24,7 +24,7 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
         public List<ExamStudentScore> StudentScores { get; set; }
 
-        public decimal SubjectAverageScore(Guid subjectId)
+        public decimal GetSubjectAverageScore(Guid subjectId)
         {
             decimal average = 0;
 
@@ -41,13 +41,42 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
         public decimal TotalAverageScore()
         {
-
             decimal averageTotalScore = 0;
             StudentScores.ForEach(s =>
             {
                 averageTotalScore += s.TotalScore;
             });
             return averageTotalScore /= StudentScores.Count;
+        }
+
+        public KeyValuePair<Guid, decimal> GetLowestScoreBySubject(Guid subjectId)
+        {
+            var currentLowset = new KeyValuePair<Guid, decimal>(Guid.Empty, decimal.MaxValue);
+            StudentScores.ForEach(s =>
+            {
+                var subjectScore = s.SubjectScored.TryGetValue(subjectId, out decimal score);
+                if(score < currentLowset.Value)
+                {
+                    currentLowset = new KeyValuePair<Guid, decimal>(s.StudentId, score);
+                }
+            });
+
+            return currentLowset;
+        }
+
+        public KeyValuePair<Guid, decimal> GetHighestScoreBySubject(Guid subjectId)
+        {
+            var currentHighest = new KeyValuePair<Guid, decimal>(Guid.Empty, decimal.MinValue);
+            StudentScores.ForEach(s =>
+            {
+                var subjectScore = s.SubjectScored.TryGetValue(subjectId, out decimal score);
+                if (score > currentHighest.Value)
+                {
+                    currentHighest = new KeyValuePair<Guid, decimal>(s.StudentId, score);
+                }
+            });
+
+            return currentHighest;
         }
     }
 }

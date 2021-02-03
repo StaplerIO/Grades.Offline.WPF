@@ -133,7 +133,7 @@ namespace Grades.Offline.WPF.Views.Exams
             // Calculate each subject
             examSummary.SubjectScores.ForEach(s =>
             {
-                var currentAverage = examSummary.SubjectAverageScore(s.SubjectId);
+                var currentAverage = examSummary.GetSubjectAverageScore(s.SubjectId);
                 var averagePercentage = currentAverage / s.TotalScore;
                 averageScores.Add($"{currentAverage:#.##} ({averagePercentage * 100:#.##}%)");
             });
