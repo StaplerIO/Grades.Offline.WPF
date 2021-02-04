@@ -72,6 +72,11 @@
                                     <GridViewColumn Width="Auto" Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
                                 </GridView>
                             </ListView.View>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <EventSetter Event="MouseDoubleClick" Handler="StudentList_ListViewItem_MouseDoubleClick"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                         </ListView>
                     </Expander>
                     <Expander Header="Subjects" IsExpanded="False">

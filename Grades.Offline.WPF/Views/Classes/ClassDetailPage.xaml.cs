@@ -46,11 +46,7 @@ namespace Grades.Offline.WPF.Views.Classes
             // Sort by Sno
             students.Sort((a, b) => a.Sno.CompareTo(b.Sno));
 
-            StudentList.ItemsSource = students.ConvertAll(s => new StudentIndexViewModel
-            {
-                Sno = s.Sno,
-                FullName = s.FullName
-            });
+            StudentList.ItemsSource = students;
             #endregion
 
             #region InitialSubjectList
@@ -91,6 +87,12 @@ namespace Grades.Offline.WPF.Views.Classes
         {
             var targetSubject = ((ListViewItem)sender).Content as DbSubject;
             NavigationService.Navigate(new SubjectDetailPage(targetSubject.Id));
+        }
+
+        private void StudentList_ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var targetStudent = ((ListViewItem)sender).Content as DbStudent;
+            NavigationService.Navigate(new StudentDetailPage(targetStudent.Id));
         }
     }
 }
