@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Grades.Offline.WPF.Models.ViewModels
@@ -78,5 +79,7 @@ namespace Grades.Offline.WPF.Models.ViewModels
 
             return currentHighest;
         }
+
+        public bool IsStudentAttended(Guid studentId) => StudentScores.FirstOrDefault(s => s.StudentId == studentId) != null;
     }
 }

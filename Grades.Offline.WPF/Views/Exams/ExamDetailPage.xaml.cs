@@ -1,4 +1,5 @@
 ﻿using Grades.Offline.WPF.Data;
+using Grades.Offline.WPF.Helpers;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Models.ViewModels;
 using MahApps.Metro.Controls;
@@ -48,43 +49,7 @@ namespace Grades.Offline.WPF.Views.Exams
 
         private void InitiateRankTable()
         {
-            _dataTable = new DataTable();
-
-            #region DataTableColumns
-            _dataTable.Columns.Add("Student");
-            var examSummary = Exam.StudentScores;
-            examSummary.SubjectScores.ForEach(subjectScore =>
-            {
-                var subject = _dbContext.Subjects.FirstOrDefault(s => s.Id == subjectScore.SubjectId);
-                _dataTable.Columns.Add($"{subject.Name} ({subjectScore.TotalScore})");
-            });
-            _dataTable.Columns.Add($"Total ({examSummary.TotalScore})");
-            #endregion
-
-            #region DataTableRows
-            examSummary.StudentScores.ForEach(studentScore =>
-            {
-                var student = _dbContext.Students.FirstOrDefault(s => s.Id == studentScore.StudentId);
-
-                var rowData = new List<object>();
-
-                rowData.Add($"({student.Sno}) {student.FullName}");
-                for (int i = 0; i < studentScore.SubjectScored.Count; i++)
-                {
-                    var subject = examSummary.SubjectScores[i];
-                    var subjectScore = studentScore.SubjectScored[subject.SubjectId];
-
-                    // Calculate correct rate by saving 2 numbers after decimal point
-                    rowData.Add($"{subjectScore} ({subjectScore / subject.TotalScore * 100:#.##}%)");
-                }
-                rowData.Add($"{studentScore.TotalScore} ({studentScore.TotalScore / examSummary.TotalScore * 100:#.##}%)");
-
-                _dataTable.Rows.Add(rowData.ToArray());
-            });
-
-            // _dataTable.Rows.Add(AverageScoreRowData(examSummary));
-
-            #endregion
+            _dataTable = RankTabelExtension.GetUIFriendlyRankTableByExamId(Exam.Id);
 
             RankTable.ItemsSource = _dataTable.DefaultView;
         }
