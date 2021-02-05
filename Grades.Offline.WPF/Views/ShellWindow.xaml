@@ -14,8 +14,8 @@
     ShowSystemMenuOnRightClick="False"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
-    MinWidth="500"
-    MinHeight="350"
+    MinWidth="720"
+    MinHeight="500"
     Title="Grades">
     <controls:MetroWindow.TitleTemplate>
         <DataTemplate>

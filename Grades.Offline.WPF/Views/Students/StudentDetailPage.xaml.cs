@@ -2,6 +2,8 @@
 using Grades.Offline.WPF.Helpers;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Views.Exams;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +29,10 @@ namespace Grades.Offline.WPF.Views.Students
         private readonly ApplicationDbContext _dbContext;
 
         private DbStudent Student { get; set; }
+
+        #region LatestExamModels
+        private string[] LatestExamDataLabels;
+        #endregion
 
         public StudentDetailPage(Guid studentId)
         {
@@ -106,6 +112,30 @@ namespace Grades.Offline.WPF.Views.Students
             dataTable.Columns.RemoveAt(0);
 
             LatestExamPersonalData.ItemsSource = dataTable.DefaultView;
+            #endregion
+
+            #region InitialChart
+            var chartSeries = new SeriesCollection();
+            var labels = new List<string>();
+
+            // We don't need column TotalScore which is the last column
+            for(int i = 0; i < dataTable.Columns.Count - 1; i++)
+            {
+                var columnName = dataTable.Columns[i].ColumnName;
+                var rowData = dataTable.Rows[0].ItemArray[i].ToString();
+
+                decimal currentSubjectScore = decimal.Parse(rowData.Substring(0, rowData.IndexOf('(')));
+
+                chartSeries.Add(new ColumnSeries
+                {
+                    Title = columnName,
+                    Values = new ChartValues<decimal> { currentSubjectScore }
+                });
+                labels.Add(columnName);
+            }
+
+            LatestExamChart.Series = chartSeries;
+            LatestExamDataLabels = labels.ToArray();
             #endregion
         }
     }
