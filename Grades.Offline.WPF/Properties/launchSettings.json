@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Grades.Offline.WPF": {
+      "commandName": "Project",
+      "sqlDebugging": false,
+      "nativeDebugging": false
+    }
+  }
+}

@@ -77,11 +77,11 @@ namespace Grades.Offline.WPF.Views.Classes
             NavigationService.Navigate(new ExamDetailPage(viewModel.ExamId));
         }
 
-        private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage());
+        private void CreateExamButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateExamPage(_class.Id));
 
-        private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage());
+        private void CreateSubjectButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateSubjectPage(_class.Id));
 
-        private void AddStudentButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateStudentPage());
+        private void AddStudentButton_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new CreateStudentPage(_class.Id));
 
         private void SubjectList_ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

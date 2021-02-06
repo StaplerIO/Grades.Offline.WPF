@@ -44,12 +44,12 @@ namespace Grades.Offline.WPF.Views.Students
             StudentNameTextBox.Text = Student.FullName;
             StudentSnoTextBox.Text = Student.Sno.ToString();
 
-            InitialLatestExamTab();
+            InitialRecentExamsTab();
         }
 
         private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(StudentNameTextBox.Text) && !string.IsNullOrWhiteSpace(StudentSnoTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(StudentNameTextBox.Text) && !string.IsNullOrWhiteSpace(StudentSnoTextBox.Text))
             {
                 UpdateButton.Visibility = Visibility.Collapsed;
                 ProgressRing.Visibility = Visibility.Visible;
@@ -77,21 +77,32 @@ namespace Grades.Offline.WPF.Views.Students
             }
         }
 
-        private void InitialLatestExamTab()
+        private void InitialRecentExamsTab()
         {
-            var examsOrderedByDate = _dbContext.Exams
+            /*
+            _dbContext.Exams
                 .Where(e => e.ClassId == Student.ClassId)
+                // Recent exams at first
                 .OrderByDescending(e => e.Date)
-                .ToList();
+                // This student attended the exam
+                .Where(e => e.StudentScores.IsStudentAttended(Student.Id))
+                // Take first 3 exams
+                .Take(3)
+                .ToList()
+                .ForEach(exam =>
+                {
+                    // Exams
+                });
+            */
 
+
+            var examsOrderedByDate = _dbContext.Exams
+               .Where(e => e.ClassId == Student.ClassId)
+               .OrderByDescending(e => e.Date)
+               .ToList();
             var latestExam = examsOrderedByDate
                 .Where(e => e.StudentScores.IsStudentAttended(Student.Id))
                 .FirstOrDefault();
-
-            #region InitialTextBox
-            ExamOverviewSimplifiedTextBlock.Text = $"[{latestExam.Name}] at [{latestExam.Date.ToShortDateString()}]";
-            ExamOverviewSimplifiedLabel.MouseDoubleClick += (s, e) => NavigationService.Navigate(new ExamDetailPage(latestExam.Id));
-            #endregion
 
             #region InitialDataGrid
             var dataTable = RankTabelExtension.GetUIFriendlyRankTableByExamId(latestExam.Id);
@@ -119,7 +130,7 @@ namespace Grades.Offline.WPF.Views.Students
             var labels = new List<string>();
 
             // We don't need column TotalScore which is the last column
-            for(int i = 0; i < dataTable.Columns.Count - 1; i++)
+            for (int i = 0; i < dataTable.Columns.Count - 1; i++)
             {
                 var columnName = dataTable.Columns[i].ColumnName;
                 var rowData = dataTable.Rows[0].ItemArray[i].ToString();

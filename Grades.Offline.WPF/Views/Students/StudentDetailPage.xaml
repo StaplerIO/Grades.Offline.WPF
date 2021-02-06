@@ -45,16 +45,9 @@
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Latest Exam">
+                <TabItem Header="Recent Exams">
                     <ScrollViewer>
                         <StackPanel Orientation="Vertical" Margin="5">
-                            <Label Margin="0, 0, 0, 10" Name="ExamOverviewSimplifiedLabel">
-                                <TextBlock TextDecorations="Underline"
-                                       x:Name="ExamOverviewSimplifiedTextBlock"
-                                       Text="@[ExamName] at @[ExamDate]"
-                                       FontSize="15"
-                                       Foreground="CadetBlue"/>
-                            </Label>
                             <DataGrid IsReadOnly="True" x:Name="LatestExamPersonalData"/>
                             <StackPanel>
                                 <lvc:CartesianChart Name="LatestExamChart" MinHeight="250">

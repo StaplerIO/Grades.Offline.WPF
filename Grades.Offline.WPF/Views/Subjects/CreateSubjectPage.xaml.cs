@@ -25,7 +25,7 @@ namespace Grades.Offline.WPF.Views.Subjects
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public CreateSubjectPage()
+        public CreateSubjectPage(Guid? classId)
         {
             _dbContext = new ApplicationDbContext();
             InitializeComponent();
@@ -36,13 +36,22 @@ namespace Grades.Offline.WPF.Views.Subjects
             dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
 
-            // Tip selection
-            dataTable.Rows.Add(Guid.Empty, "Select a class");
-
             // Class selection
-            _dbContext.Classes.ToList().ForEach(c => dataTable.Rows.Add(c.Id, c.Name));
+            dataTable.Rows.Add(Guid.Empty, "Select a class");
+            if (classId.HasValue)
+            {
+                var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId.Value);
+                dataTable.Rows.Add(classId, @class.Name);
+
+                ClassSelector.SelectedIndex = 1;
+            }
+            else
+            {
+                _dbContext.Classes.ToList().ForEach(c => dataTable.Rows.Add(c.Id, c.Name));
+                ClassSelector.SelectedIndex = 0;
+            }
+
             ClassSelector.ItemsSource = dataTable.DefaultView;
-            ClassSelector.SelectedIndex = 0;
             #endregion
         }
 
