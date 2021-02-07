@@ -31,7 +31,7 @@ namespace Grades.Offline.WPF.Views.Students
         private DbStudent Student { get; set; }
 
         #region LatestExamModels
-        private string[] LatestExamDataLabels;
+        private string[] ExamDates;
         #endregion
 
         public StudentDetailPage(Guid studentId)
@@ -79,23 +79,55 @@ namespace Grades.Offline.WPF.Views.Students
 
         private void InitialRecentExamsTab()
         {
-            /*
-            _dbContext.Exams
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("Date");
+
+            var exams = _dbContext.Exams
                 .Where(e => e.ClassId == Student.ClassId)
                 // Recent exams at first
                 .OrderByDescending(e => e.Date)
-                // This student attended the exam
-                .Where(e => e.StudentScores.IsStudentAttended(Student.Id))
+                .ToList();
+            // This student attended the exam
+            exams.Where(e => e.StudentScores.IsStudentAttended(Student.Id))
                 // Take first 3 exams
                 .Take(3)
                 .ToList()
                 .ForEach(exam =>
                 {
-                    // Exams
+                    var currentExamTable = RankTabelExtension.GetUIFriendlyRankTableByExamId(exam.Id);
+
+                    object[] targetRowData = null;
+                    foreach (DataRow row in currentExamTable.Rows)
+                    {
+                        // A student row is structured like this: (<Sno>) <FullName>, so we get the last characters (This may cause error!)
+                        if (row.ItemArray[0].ToString().EndsWith(Student.FullName))
+                        {
+                            targetRowData = row.ItemArray;
+                            break;
+                        }
+                    }
+
+                    // Add new subjects recursively
+                    currentExamTable.Columns.RemoveAt(0);
+                    foreach (DataColumn subjectColumn in currentExamTable.Columns)
+                    {
+                        if (!dataTable.Columns.Contains(subjectColumn.ColumnName))
+                        {
+                            dataTable.Columns.Add(subjectColumn.ColumnName);
+                        }
+                    }
+
+                    // Add ExamDate to first column
+                    // Delete first item in targetRowData because the first item stored student name
+                    object[] actualRowData = new object[] { exam.Date.ToShortDateString() };
+                    actualRowData = actualRowData.Concat(targetRowData[1..]).ToArray();
+                    dataTable.Rows.Add(actualRowData);
                 });
-            */
 
+            LatestExamPersonalData.ItemsSource = dataTable.DefaultView;
 
+            // Only latest exam
+            /*
             var examsOrderedByDate = _dbContext.Exams
                .Where(e => e.ClassId == Student.ClassId)
                .OrderByDescending(e => e.Date)
@@ -124,13 +156,26 @@ namespace Grades.Offline.WPF.Views.Students
 
             LatestExamPersonalData.ItemsSource = dataTable.DefaultView;
             #endregion
+            */
 
             #region InitialChart
             var chartSeries = new SeriesCollection();
             var labels = new List<string>();
 
             // We don't need column TotalScore which is the last column
-            for (int i = 0; i < dataTable.Columns.Count - 1; i++)
+            // Also, we don't need the first column which stored the date of the exam
+            for (int i = 1; i < dataTable.Columns.Count; i++)
+            {
+                var columnName = dataTable.Columns[i].ColumnName;
+                chartSeries.Add(new ColumnSeries
+                {
+                    Title = columnName,
+                    Values = new ChartValues<decimal>()
+                });
+            }
+
+            /*
+            for (int i = 1; i < dataTable.Columns.Count - 1; i++)
             {
                 var columnName = dataTable.Columns[i].ColumnName;
                 var rowData = dataTable.Rows[0].ItemArray[i].ToString();
@@ -144,9 +189,25 @@ namespace Grades.Offline.WPF.Views.Students
                 });
                 labels.Add(columnName);
             }
+            */
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                // Just like we said before...
+                for (int i = 1; i < dataTable.Columns.Count - 1; i++)
+                {
+                    var rowData = row.ItemArray[i].ToString();
+                    decimal currentSubjectScore = decimal.Parse(rowData.Substring(0, rowData.IndexOf('(')));
+
+                    // Use [i - 1] because the counter starts from 1
+                    chartSeries[i - 1].Values.Add(currentSubjectScore);
+                }
+
+                labels.Add(row.ItemArray[0].ToString());
+            }
 
             LatestExamChart.Series = chartSeries;
-            LatestExamDataLabels = labels.ToArray();
+            ExamDates = labels.ToArray();
             #endregion
         }
     }
