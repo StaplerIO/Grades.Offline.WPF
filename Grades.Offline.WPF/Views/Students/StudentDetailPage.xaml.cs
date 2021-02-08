@@ -174,6 +174,14 @@ namespace Grades.Offline.WPF.Views.Students
                 });
             }
 
+            // Add total score serie
+            chartSeries.Add(new LineSeries
+            {
+                Title = dataTable.Columns[dataTable.Columns.Count - 1].ColumnName,
+                Values = new ChartValues<decimal>(),
+                Fill = Brushes.Transparent
+            });
+
             /*
             for (int i = 1; i < dataTable.Columns.Count - 1; i++)
             {
@@ -202,6 +210,11 @@ namespace Grades.Offline.WPF.Views.Students
                     // Use [i - 1] because the counter starts from 1
                     chartSeries[i - 1].Values.Add(currentSubjectScore);
                 }
+
+                // Add total score
+                var lastRowItem = row.ItemArray.Last().ToString();
+                decimal total = decimal.Parse(lastRowItem.Substring(0, lastRowItem.IndexOf('(')));
+                chartSeries.Last().Values.Add(total);
 
                 labels.Add(row.ItemArray[0].ToString());
             }

@@ -55,7 +55,7 @@
                                         <lvc:Axis Title="Date" Labels="{Binding ExamDates}"/>
                                     </lvc:CartesianChart.AxisX>
                                     <lvc:CartesianChart.AxisY>
-                                        <lvc:Axis Title="Score"/>
+                                        <lvc:Axis Title="Score" MinValue="0"/>
                                     </lvc:CartesianChart.AxisY>
                                 </lvc:CartesianChart>
                             </StackPanel>
