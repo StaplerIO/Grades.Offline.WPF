@@ -60,7 +60,7 @@ namespace Grades.Offline.WPF.Services
                 _shellWindow = _serviceProvider.GetService(typeof(IShellWindow)) as IShellWindow;
                 _navigationService.Initialize(_shellWindow.GetNavigationFrame());
                 _shellWindow.ShowWindow();
-                _navigationService.NavigateTo(typeof(MainPage));
+                _navigationService.NavigateTo(typeof(DashboardPage));
                 await Task.CompletedTask;
             }
         }

@@ -72,7 +72,7 @@ namespace Grades.Offline.WPF
             // Views
             services.AddTransient<IShellWindow, ShellWindow>();
 
-            services.AddTransient<MainPage>();
+            services.AddTransient<DashboardPage>();
 
             services.AddTransient<CreateClassPage>();
             services.AddTransient<ClassDetailPage>();

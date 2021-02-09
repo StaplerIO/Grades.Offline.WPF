@@ -70,6 +70,14 @@ namespace Grades.Offline.WPF.Views.Exams
             MasterTable.ItemsSource = dataTable.DefaultView;
 
             Exam = exam;
+
+            // Add event
+            Closing += ScoreRecordWindow_Closing;
+        }
+
+        private void ScoreRecordWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
 
         private async void DoneButton_Click(object sender, RoutedEventArgs e)
@@ -77,9 +85,9 @@ namespace Grades.Offline.WPF.Views.Exams
             DoneButton.Visibility = Visibility.Collapsed;
             ProgressRing.Visibility = Visibility.Visible;
 
+
             // Disale all interactions with data table
             MasterTable.IsEnabled = false;
-
 
             var scoreSummary = new ExamScoreSummary
             {

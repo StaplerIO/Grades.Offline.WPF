@@ -68,12 +68,6 @@
                         <Fluent:Button Header="Create" Name="CreateClassButton" Click="CreateClassButton_Click" />
                         <Fluent:Button Header="All" Name="ViewAllClassButton" Click="ViewAllClassButton_Click" />
                     </Fluent:RibbonGroupBox>
-                    <Fluent:RibbonGroupBox
-                        State="Large"
-                        MinWidth="150"
-                        Header="Danger Zone">
-                        <Fluent:Button Header="Edit"></Fluent:Button>
-                    </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
                 <!--Exam zone-->
                 <Fluent:RibbonTabItem
@@ -85,13 +79,6 @@
                         MinWidth="75"
                         Header="Exam">
                         <Fluent:Button Name="CreateExamButton" Header="Create" Click="CreateExamButton_Click"/>
-                        <Fluent:Button Header="View details" />
-                    </Fluent:RibbonGroupBox>
-                    <Fluent:RibbonGroupBox
-                        State="Large"
-                        MinWidth="75"
-                        Header="Danger Zone">
-                        <Fluent:Button Header="Delete"></Fluent:Button>
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
                 <!--Help zone-->

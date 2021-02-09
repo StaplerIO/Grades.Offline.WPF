@@ -4,9 +4,9 @@ using System.Windows.Controls;
 
 namespace Grades.Offline.WPF.Views
 {
-    public partial class MainPage : Page, INotifyPropertyChanged
+    public partial class DashboardPage : Page, INotifyPropertyChanged
     {
-        public MainPage()
+        public DashboardPage()
         {
             InitializeComponent();
             DataContext = this;

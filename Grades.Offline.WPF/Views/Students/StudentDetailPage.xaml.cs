@@ -87,6 +87,7 @@ namespace Grades.Offline.WPF.Views.Students
                 // Recent exams at first
                 .OrderByDescending(e => e.Date)
                 .ToList();
+
             // This student attended the exam
             exams.Where(e => e.StudentScores.IsStudentAttended(Student.Id))
                 // Take first 3 exams
