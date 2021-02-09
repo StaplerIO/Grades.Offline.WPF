@@ -83,11 +83,14 @@ namespace Grades.Offline.WPF
             services.AddTransient<ExamDetailPage>();
 
             services.AddTransient<CreateStudentPage>();
+            services.AddTransient<StudentDetailPage>();
 
             services.AddTransient<CreateSubjectPage>();
             services.AddTransient<SubjectDetailPage>();
 
             services.AddTransient<SettingsPage>();
+
+            services.AddTransient<AboutWindow>();
 
             // Configuration
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));

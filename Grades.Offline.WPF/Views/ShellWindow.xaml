@@ -104,6 +104,7 @@
                         MinWidth="150"
                         Header="Help">
                         <Fluent:Button Header="Help" />
+                        <Fluent:Button Name="AboutButton" Click="AboutButton_Click" Header="About" />
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>
