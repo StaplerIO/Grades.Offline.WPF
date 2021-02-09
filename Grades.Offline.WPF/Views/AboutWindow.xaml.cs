@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace Grades.Offline.WPF.Views
     /// <summary>
     /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow : MetroWindow
     {
         public AboutWindow()
         {
