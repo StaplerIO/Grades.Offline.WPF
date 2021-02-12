@@ -341,3 +341,6 @@ healthchecksdb
 
 # Sqlite database 
 *.db
+
+# vscode profile
+.vscode/
