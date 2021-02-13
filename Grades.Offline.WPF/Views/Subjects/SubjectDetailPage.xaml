@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,35 +18,35 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Subject Details" />
+            Text="{x:Static loc:Resources.Subject_details}" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
             <mah:MetroTabControl TabStripPlacement="Top" Style="{DynamicResource MahApps.Styles.TabControl.Animated}" IsSynchronizedWithCurrentItem="True" mah:HeaderedControlHelper.HeaderFontSize="14">
-                <TabItem Header="Overview">
+                <TabItem Header="{x:Static loc:Resources.Overview}">
                     <StackPanel Orientation="Vertical" Margin="10">
                         <DockPanel>
                             <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
-                                <Label Content="Name"/>
+                                <Label Content="{x:Static loc:Resources.Name}"/>
                             </StackPanel>
                             <StackPanel>
                                 <TextBox Name="SubjectNameTextBox" Text="@[Name]" Margin="7, 0, 0, 0"/>
                             </StackPanel>
                         </DockPanel>
                         <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                            <Button Name="UpdateButton" Click="UpdateButton_Click" Content="Update"/>
+                            <Button Name="UpdateButton" Click="UpdateButton_Click" Content="{x:Static loc:Resources.Update}"/>
                             <mah:ProgressRing Height="20" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Chart">
+                <TabItem Header="{x:Static loc:Resources.Chart}">
                     <lvc:CartesianChart Name="Chart">
                         <lvc:CartesianChart.AxisX>
-                            <lvc:Axis Title="Date" Labels="{Binding ExamDates}"/>
+                            <lvc:Axis Title="{x:Static loc:Resources.Date}" Labels="{Binding ExamDates}"/>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis Title="Score"/>
+                            <lvc:Axis Title="{x:Static loc:Resources.Score}"/>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </TabItem>

@@ -9,6 +9,7 @@
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     xmlns:behaviors="clr-namespace:Grades.Offline.WPF.Behaviors"
     xmlns:Fluent="urn:fluent-ribbon"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
     ShowSystemMenuOnRightClick="False"
@@ -60,38 +61,38 @@
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
-                    Header="Class">
+                    Header="{x:Static loc:Resources.Class}">
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="75"
-                        Header="Class">
-                        <Fluent:Button Header="Create" Name="CreateClassButton" Click="CreateClassButton_Click" />
-                        <Fluent:Button Header="All" Name="ViewAllClassButton" Click="ViewAllClassButton_Click" />
+                        Header="{x:Static loc:Resources.Class}">
+                        <Fluent:Button Header="{x:Static loc:Resources.Create}" Name="CreateClassButton" Click="CreateClassButton_Click" />
+                        <Fluent:Button Header="{x:Static loc:Resources.All}" Name="ViewAllClassButton" Click="ViewAllClassButton_Click" />
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
                 <!--Exam zone-->
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
-                    Header="Exam">
+                    Header="{x:Static loc:Resources.Exam}">
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="75"
-                        Header="Exam">
-                        <Fluent:Button Name="CreateExamButton" Header="Create" Click="CreateExamButton_Click"/>
+                        Header="{x:Static loc:Resources.Exam}">
+                        <Fluent:Button Name="CreateExamButton" Header="{x:Static loc:Resources.Create}" Click="CreateExamButton_Click"/>
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
                 <!--Help zone-->
                 <Fluent:RibbonTabItem
                     Fluent:KeyTip="A"
                     behaviors:RibbonTabsBehavior.IsHomeTab="True"
-                    Header="Help">
+                    Header="{x:Static loc:Resources.Help}">
                     <Fluent:RibbonGroupBox
                         State="Large"
                         MinWidth="150"
-                        Header="Help">
-                        <Fluent:Button Header="Help" />
-                        <Fluent:Button Name="AboutButton" Click="AboutButton_Click" Header="About" />
+                        Header="{x:Static loc:Resources.Help}">
+                        <Fluent:Button Header="{x:Static loc:Resources.Help}" />
+                        <Fluent:Button Name="AboutButton" Click="AboutButton_Click" Header="{x:Static loc:Resources.About}" />
                     </Fluent:RibbonGroupBox>
                 </Fluent:RibbonTabItem>
             </Fluent:Ribbon>

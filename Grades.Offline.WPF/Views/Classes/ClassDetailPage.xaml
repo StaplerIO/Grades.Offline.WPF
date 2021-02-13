@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -16,7 +17,7 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Class Details"
+            Text="{x:Static loc:Resources.Class_details}"
             />
         <Grid
             Grid.Row="1"
@@ -32,29 +33,29 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="10" Grid.ColumnSpan="2" Orientation="Vertical">
                 <StackPanel>
-                    <Label Content="Class" Name="ClassNameLabel" FontSize="20"/>
+                    <Label Content="{x:Static loc:Resources.Class}" Name="ClassNameLabel" FontSize="20"/>
                     <Label Content="@{ClassId}" Name="ClassIdLabel" FontFamily="Consolas" FontSize="11" Foreground="Gray"/>
                 </StackPanel>
                 <StackPanel Margin="0, 25, 0, 0">
                     <Button Name="CreateSubjectButton" BorderThickness="0" Click="CreateSubjectButton_Click" Foreground="CadetBlue">
-                        <TextBlock><Underline>Create Subject</Underline></TextBlock>
+                        <TextBlock Text="{x:Static loc:Resources.Create_subject}"><Underline/></TextBlock>
                     </Button>
                     <Button Name="CreateExamButton" BorderThickness="0" Click="CreateExamButton_Click" Foreground="CadetBlue">
-                        <TextBlock><Underline>Create Exam</Underline></TextBlock>
+                        <TextBlock Text="{x:Static loc:Resources.Create_exam}"><Underline/></TextBlock>
                     </Button>
                     <Button Name="AddStudentButton" BorderThickness="0" Click="AddStudentButton_Click" Foreground="CadetBlue">
-                        <TextBlock><Underline>Add student</Underline></TextBlock>
+                        <TextBlock Text="{x:Static loc:Resources.Create_student}"><Underline/></TextBlock>
                     </Button>
                 </StackPanel>
             </StackPanel>
             <ScrollViewer Grid.Column="2" Grid.ColumnSpan="3">
                 <StackPanel>
-                    <Expander Header="Exams" IsExpanded="True">
+                    <Expander Header="{x:Static loc:Resources.Exam}" IsExpanded="True">
                         <ListView Name="ExamList">
                             <ListView.View>
                                 <GridView AllowsColumnReorder="true">
-                                    <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Width="Auto" Header="Date" DisplayMemberBinding="{Binding DateString}"/>
+                                    <GridViewColumn Width="Auto" Header="{x:Static loc:Resources.Name}" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Width="Auto" Header="{x:Static loc:Resources.Date}" DisplayMemberBinding="{Binding DateString}"/>
                                 </GridView>
                             </ListView.View>
                             <ListView.ItemContainerStyle>
@@ -64,12 +65,12 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                     </Expander>
-                    <Expander Header="Students" IsExpanded="False">
+                    <Expander Header="{x:Static loc:Resources.Student}" IsExpanded="False">
                         <ListView Name="StudentList">
                             <ListView.View>
                                 <GridView AllowsColumnReorder="true">
-                                    <GridViewColumn Width="Auto" Header="Sno" DisplayMemberBinding="{Binding Sno}"/>
-                                    <GridViewColumn Width="Auto" Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
+                                    <GridViewColumn Width="Auto" Header="{x:Static loc:Resources.Sno}" DisplayMemberBinding="{Binding Sno}"/>
+                                    <GridViewColumn Width="Auto" Header="{x:Static loc:Resources.Full_name}" DisplayMemberBinding="{Binding FullName}"/>
                                 </GridView>
                             </ListView.View>
                             <ListView.ItemContainerStyle>
@@ -79,11 +80,11 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                     </Expander>
-                    <Expander Header="Subjects" IsExpanded="False">
+                    <Expander Header="{x:Static loc:Resources.Subjects}" IsExpanded="False">
                         <ListView Name="SubjectList">
                             <ListView.View>
                                 <GridView AllowsColumnReorder="true">
-                                    <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Width="Auto" Header="{x:Static loc:Resources.Name}" DisplayMemberBinding="{Binding Name}"/>
                                 </GridView>
                             </ListView.View>
                             <ListView.ItemContainerStyle>

@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,31 +18,31 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create student" />
+            Text="{x:Static loc:Resources.Create_student}" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <StackPanel  Margin="10">
+            <StackPanel Margin="10">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Full Name"/>
+                    <Label Content="{x:Static loc:Resources.Full_name}"/>
                     <TextBox x:Name="StudentNameTextBox"
                              MaxLength="100"
                              TextWrapping="NoWrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Sno"/>
+                    <Label Content="{x:Static loc:Resources.Sno}"/>
                     <TextBox x:Name="StudentSnoTextBox"
                              MaxLength="100"
                              PreviewTextInput="StudentSnoTextBox_PreviewTextInput"
                              TextWrapping="NoWrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0, 5, 0, 0">
-                    <Label Content="Class"/>
+                    <Label Content="{x:Static loc:Resources.Class}"/>
                     <ComboBox Name="ClassSelector" DisplayMemberPath="Name"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
+                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="{x:Static loc:Resources.Done}"/>
                     <mah:ProgressRing Height="20" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                 </StackPanel>
             </StackPanel>

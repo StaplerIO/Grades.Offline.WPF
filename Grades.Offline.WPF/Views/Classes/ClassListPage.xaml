@@ -6,6 +6,7 @@
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     x:Class="Grades.Offline.WPF.Views.Classes.ClassListPage"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     Style="{DynamicResource MahApps.Styles.Page}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -17,7 +18,7 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="All Classes" />
+            Text="{x:Static loc:Resources.All_classes}" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
@@ -25,10 +26,8 @@
             <ListView Name="ClassList">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true">
-                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Width="150" Header="Student Count" DisplayMemberBinding="{Binding StudentCount}"/>
-                        <GridViewColumn Width="100" Header="Actions">
-                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="{x:Static loc:Resources.Name}" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="150" Header="{x:Static loc:Resources.Student_count}" DisplayMemberBinding="{Binding StudentCount}"/>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>

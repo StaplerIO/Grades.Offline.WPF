@@ -5,21 +5,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grades.Offline.WPF.Views"
+        xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
         d:DataContext="{d:DesignInstance Type=local:ShellWindow}"
         mc:Ignorable="d"
-        Title="About" Height="245" Width="210" ResizeMode="NoResize">
+        Title="{x:Static loc:Resources.About}" Height="245" Width="210" ResizeMode="NoResize">
     <Grid>
         <DockPanel Margin="10">
             <StackPanel DockPanel.Dock="Top">
                 <Label Content="Grades" FontSize="28" FontStyle="Italic" FontWeight="Bold"/>
                 <StackPanel Margin="5">
-                    <Label Content="Version: 0.1-alpha"/>
-                    <Label Content="Author: Jeb Feng"/>
+                    <Label Content="{x:Static loc:Resources.Version}"/>
+                    <Label Content="{x:Static loc:Resources.Author}"/>
                     <Label Content="Copyright © 2021 StaplerIO." Margin="0, 15, 0, 0"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-                <Button Content="Close" Name="CloseButton" Click="CloseButton_Click"/>
+                <Button Content="{x:Static loc:Resources.Close}" Name="CloseButton" Click="CloseButton_Click"/>
             </StackPanel>
         </DockPanel>
     </Grid>

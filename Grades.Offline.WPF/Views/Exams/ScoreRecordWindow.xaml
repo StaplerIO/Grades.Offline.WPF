@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Grades.Offline.WPF.Views.Exams"
+        xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
         mc:Ignorable="d"
-        Title="Score Recorder" Height="450" Width="800">
+        Title="{x:Static loc:Resources.Score_Recorder}" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
             <DataGrid Name="MasterTable" PreviewTextInput="MasterTable_PreviewTextInput" />
             <StackPanel Margin="10">
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                    <Button x:Name="ImportButton" Click="ImportButton_Click" Content="Import from .csv file" Margin="0, 0, 0, 10"/>
-                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
+                    <Button x:Name="ImportButton" Click="ImportButton_Click" Content="{x:Static loc:Resources.Import_from__csv_file}" Margin="0, 0, 0, 10"/>
+                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="{x:Static loc:Resources.Done}"/>
                     <mah:ProgressRing Height="19" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                 </StackPanel>
             </StackPanel>

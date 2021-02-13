@@ -6,6 +6,7 @@
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     x:Class="Grades.Offline.WPF.Views.Classes.CreateClassPage"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     Style="{DynamicResource MahApps.Styles.Page}"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
@@ -17,20 +18,20 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create class" />
+            Text="{x:Static loc:Resources.Create_class}" />
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
             <StackPanel  Margin="10">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Name:"/>
+                    <Label Content="{x:Static loc:Resources.Name}"/>
                     <TextBox x:Name="ClassNameTextBox"
                              MaxLength="100"
                              TextWrapping="NoWrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="Done"/>
+                    <Button x:Name="DoneButton" Click="DoneButton_Click" Content="{x:Static loc:Resources.Done}"/>
                     <mah:ProgressRing Height="20" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                 </StackPanel>
             </StackPanel>

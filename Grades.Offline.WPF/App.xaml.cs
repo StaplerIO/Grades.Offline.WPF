@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -46,9 +48,15 @@ namespace Grades.Offline.WPF
                     .ConfigureAppConfiguration(c =>
                     {
                         c.SetBasePath(appLocation);
+                        
                     })
                     .ConfigureServices(ConfigureServices)
                     .Build();
+
+            /*
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+            */
 
             await _host.StartAsync();
         }

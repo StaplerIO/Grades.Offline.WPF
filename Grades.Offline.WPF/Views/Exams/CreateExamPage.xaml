@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:properties="clr-namespace:Grades.Offline.WPF.Properties"
+    xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,43 +18,43 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="Create Exam"/>
+            Text="{x:Static loc:Resources.Create_exam}"/>
         <ScrollViewer Grid.Row="1">
             <Grid
                 Margin="{StaticResource MediumLeftRightMargin}"
                 Background="{DynamicResource MahApps.Brushes.Gray10}">
                 <StackPanel Orientation="Vertical">
-                    <Expander Header="Basic information" IsExpanded="True">
+                    <Expander Header="{x:Static loc:Resources.Basic_information}" IsExpanded="True">
                         <StackPanel Margin="10">
                             <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
-                                <Label Content="For class:"/>
+                                <Label Content="{x:Static loc:Resources.Class}"/>
                                 <ComboBox Name="ClassSelector" DisplayMemberPath="Name" SelectionChanged="ClassSelector_SelectionChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <Label Content="Name:"/>
+                                <Label Content="{x:Static loc:Resources.Full_name}"/>
                                 <TextBox x:Name="ExamNameTextBox"
                              MaxLength="100"
                              TextWrapping="NoWrap"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="0, 15, 0, 0">
-                                <Label Content="Date:"/>
+                                <Label Content="{x:Static loc:Resources.Date}"/>
                                 <DatePicker Name="ExamDate"/>
                             </StackPanel>
                         </StackPanel>
                     </Expander>
-                    <Expander Header="Subjects">
+                    <Expander Header="{x:Static loc:Resources.Subjects}">
                         <ListView Name="SubjectList">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Attended?">
+                                        <GridViewColumn Header="{x:Static loc:Resources.Is_Attended}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <CheckBox IsChecked="{Binding Attended}"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="{x:Static loc:Resources.Name}" DisplayMemberBinding="{Binding Name}"/>
                                     </GridView.Columns>
                                 </GridView>
                             </ListView.View>
@@ -64,21 +65,21 @@
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Attended?">
+                                        <GridViewColumn Header="{x:Static loc:Resources.Is_Attended}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <CheckBox IsChecked="{Binding Attended}"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
-                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="{x:Static loc:Resources.Full_name}" DisplayMemberBinding="{Binding Name}"/>
                                     </GridView.Columns>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </Expander>
                     <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
-                        <Button x:Name="NextButton" Click="NextButton_Click" Content="Next"/>
+                        <Button x:Name="NextButton" Click="NextButton_Click" Content="{x:Static loc:Resources.Next}"/>
                         <mah:ProgressRing Height="19" Width="20" Visibility="Hidden" Name="ProgressRing"/>
                     </StackPanel>
                 </StackPanel>
