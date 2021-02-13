@@ -10,7 +10,7 @@ namespace Grades.Offline.WPF.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlite("Data Source=App.db");
+            builder.UseSqlite("Data Source=Grades.Offline.WPF.db");
             builder.EnableSensitiveDataLogging();
             builder.EnableDetailedErrors();
         }
