@@ -1,5 +1,6 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -46,9 +47,25 @@ namespace Grades.Offline.WPF.Views.Classes
                     await _dbContext.SaveChangesAsync();
 
                     // Tell user that the class has been created
-                    MessageBox.Show("Class created successfully!", "Grades", MessageBoxButton.OK);
+                    var dialog = new TaskDialog();
+                    dialog.WindowTitle = "Dialog - Grades";
+                    dialog.MainInstruction = "Class created";
+                    dialog.MainIcon = TaskDialogIcon.Information;
+                    dialog.Content = $"You have created class \"{entity.Name}\" successfully!";
+                    dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+                    var ignoreButton = new TaskDialogButton("Continue creating class");
+                    var proceedButton = new TaskDialogButton("Go to class page");
+                    dialog.Buttons.Add(ignoreButton);
+                    dialog.Buttons.Add(proceedButton);
 
-                    NavigationService.Navigate(new ClassDetailPage(entity.Id));
+                    var result = dialog.ShowDialog(Window.GetWindow(this));
+
+                    if (result == proceedButton)
+                    {
+                        NavigationService.Navigate(new ClassDetailPage(entity.Id));
+                    }
+
+                    ClassNameTextBox.Text = string.Empty;
                 }
 
                 DoneButton.Visibility = Visibility.Visible;

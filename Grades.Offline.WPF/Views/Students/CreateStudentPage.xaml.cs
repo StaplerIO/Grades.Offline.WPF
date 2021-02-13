@@ -1,6 +1,7 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Views.Classes;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,20 +66,43 @@ namespace Grades.Offline.WPF.Views.Students
                 var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
                 var classId = (Guid)selectedRowElementArray.ElementAt(0);
 
-                _dbContext.Students.Add(new DbStudent
+                var student = new DbStudent
                 {
                     FullName = StudentNameTextBox.Text,
                     Sno = int.Parse(StudentSnoTextBox.Text),
                     ClassId = classId
-                });
+                };
+
+                _dbContext.Students.Add(student);
 
                 await _dbContext.SaveChangesAsync();
 
                 DoneButton.Visibility = Visibility.Visible;
                 ProgressRing.Visibility = Visibility.Hidden;
 
-                MessageBox.Show("Stuent created successfully!", "Grades", MessageBoxButton.OK);
-                NavigationService.Navigate(new ClassDetailPage(classId));
+                var dialog = new TaskDialog();
+                dialog.WindowTitle = "Dialog - Grades";
+                dialog.MainInstruction = "Student created";
+                dialog.MainIcon = TaskDialogIcon.Information;
+                dialog.Content = $"You have created student \"{student.FullName}\" successfully!";
+                dialog.ExpandedInformation = $"The student belongs to class \"{selectedRowElementArray.ElementAt(1)}\"";
+                dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+                var ignoreButton = new TaskDialogButton("Continue creating student");
+                var proceedButton = new TaskDialogButton("Go to class page");
+                dialog.Buttons.Add(ignoreButton);
+                dialog.Buttons.Add(proceedButton);
+
+                var result = dialog.ShowDialog(Window.GetWindow(this));
+
+                if (result == proceedButton)
+                {
+                    NavigationService.Navigate(new ClassDetailPage(classId));
+                }
+
+                StudentNameTextBox.Text = string.Empty;
+
+                DoneButton.Visibility = Visibility.Visible;
+                ProgressRing.Visibility = Visibility.Hidden;
             }
         }
 

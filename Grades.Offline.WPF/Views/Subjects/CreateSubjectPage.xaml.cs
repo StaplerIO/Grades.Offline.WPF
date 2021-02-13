@@ -1,6 +1,7 @@
 ﻿using Grades.Offline.WPF.Data;
 using Grades.Offline.WPF.Models.DbModels;
 using Grades.Offline.WPF.Views.Classes;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,19 +67,43 @@ namespace Grades.Offline.WPF.Views.Subjects
                 var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
                 var classId = (Guid)selectedRowElementArray.ElementAt(0);
 
-                _dbContext.Subjects.Add(new DbSubject
+                var subject = new DbSubject
                 {
                     Name = SubjectNameTextBox.Text,
                     ClassId = classId
-                });
+                };
+
+                _dbContext.Subjects.Add(subject);
 
                 await _dbContext.SaveChangesAsync();
 
                 DoneButton.Visibility = Visibility.Visible;
                 ProgressRing.Visibility = Visibility.Hidden;
 
-                MessageBox.Show("Subject created successfully!", "Grades", MessageBoxButton.OK);
-                NavigationService.Navigate(new ClassDetailPage(classId));
+                var dialog = new TaskDialog();
+                dialog.WindowTitle = "Dialog - Grades";
+                dialog.MainInstruction = "Subject created";
+                dialog.MainIcon = TaskDialogIcon.Information;
+                dialog.Content = $"You have created subject \"{subject.Name}\" successfully!";
+                dialog.ExpandedInformation = $"The subject belongs to class \"{selectedRowElementArray.ElementAt(1)}\"";
+                dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+                var ignoreButton = new TaskDialogButton("Continue creating subject");
+                var proceedButton = new TaskDialogButton("Go to class page");
+                dialog.Buttons.Add(ignoreButton);
+                dialog.Buttons.Add(proceedButton);
+
+                var result = dialog.ShowDialog(Window.GetWindow(this));
+
+                if (result == proceedButton)
+                {
+                    NavigationService.Navigate(new ClassDetailPage(classId));
+                }
+
+                SubjectNameTextBox.Text = string.Empty;
+
+                DoneButton.Visibility = Visibility.Visible;
+                ProgressRing.Visibility = Visibility.Hidden;
+                
             }
         }
     }
