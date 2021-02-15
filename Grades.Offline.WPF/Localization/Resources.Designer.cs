@@ -124,6 +124,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose language.
+        /// </summary>
+        public static string Choose_language {
+            get {
+                return ResourceManager.GetString("Choose language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose theme.
         /// </summary>
         public static string Choose_theme {
@@ -309,6 +318,15 @@ namespace Grades.Offline.WPF.Localization {
         public static string Is_Attended {
             get {
                 return ResourceManager.GetString("Is Attended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         

@@ -5,6 +5,7 @@
     <RootNamespace>Grades.Offline.WPF</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>0.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="22.1.1" />

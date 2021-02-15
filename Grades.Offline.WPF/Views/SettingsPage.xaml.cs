@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,12 +23,19 @@ namespace Grades.Offline.WPF.Views
         private readonly IApplicationInfoService _applicationInfoService;
         private bool _isInitialized;
         private AppTheme _theme;
+        private AppLanguage _language;
         private string _versionDescription;
 
         public AppTheme Theme
         {
             get { return _theme; }
             set { Set(ref _theme, value); }
+        }
+
+        public new AppLanguage Language
+        {
+            get { return _language; }
+            set { Set(ref _language, value); }
         }
 
         public string VersionDescription
@@ -84,7 +94,7 @@ namespace Grades.Offline.WPF.Views
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, value))
             {
@@ -96,5 +106,28 @@ namespace Grades.Offline.WPF.Views
         }
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void OnEnglishChecked(object sender, RoutedEventArgs e)
+        {
+            if (_isInitialized)
+            {
+                Localization.Resources.Culture = new CultureInfo("en-US");
+                RestartApplication();
+            }
+        }
+        private void OnChineseChecked(object sender, RoutedEventArgs e)
+        {
+            if (_isInitialized)
+            {
+                Localization.Resources.Culture = new CultureInfo("zh-CN");
+                RestartApplication();
+            }
+        }
+
+        private void RestartApplication()
+        {
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }

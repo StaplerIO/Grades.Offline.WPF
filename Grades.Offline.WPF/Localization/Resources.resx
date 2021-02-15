@@ -264,4 +264,10 @@
   <data name="Create class" xml:space="preserve">
     <value>Create class</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Choose language" xml:space="preserve">
+    <value>Choose language</value>
+  </data>
 </root>

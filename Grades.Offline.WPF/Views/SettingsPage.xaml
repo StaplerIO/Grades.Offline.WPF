@@ -59,6 +59,31 @@
                             IsChecked="{Binding Theme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default}" />
                     </StackPanel>
                 </StackPanel>
+
+                <TextBlock
+                    Margin="{StaticResource SmallTopMargin}"
+                    Style="{StaticResource SubtitleTextStyle}"
+                    Text="{x:Static loc:Resources.Language}" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <TextBlock
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Static loc:Resources.Choose_language}" />
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                        <RadioButton
+                            GroupName="Language"
+                            Content="简体中文"
+                            FontSize="{StaticResource MediumFontSize}"
+                            Checked="OnChineseChecked"
+                            IsChecked="False" />
+                        <RadioButton
+                            GroupName="Language"
+                            Content="English (US)"
+                            Margin="{StaticResource XSmallTopMargin}"
+                            FontSize="{StaticResource MediumFontSize}"
+                            Checked="OnEnglishChecked"
+                            IsChecked="True" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </ScrollViewer>

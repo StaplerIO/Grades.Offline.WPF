@@ -103,6 +103,10 @@ namespace Grades.Offline.WPF
             // Configuration
             services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 
+            var lang = context.Configuration.GetSection(nameof(AppConfig))["Language"];
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+
             // Database
             // services.AddDbContext<ApplicationDbContext>();
             new ApplicationDbContext().Database.Migrate();

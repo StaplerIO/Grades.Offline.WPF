@@ -264,4 +264,10 @@
   <data name="Create class" xml:space="preserve">
     <value>创建班级</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Choose language" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
 </root>
