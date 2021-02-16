@@ -16,7 +16,7 @@ namespace Grades.Offline.WPF.Views
     /// <summary>
     /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutWindow : MetroWindow
+    public partial class AboutWindow
     {
         public AboutWindow()
         {
