@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
+using Grades.Offline.WPF.Managers;
 using Grades.Offline.WPF.Models;
 
 using Microsoft.Extensions.Options;
@@ -69,6 +70,7 @@ namespace Grades.Offline.WPF.Views
         {
             if (_isInitialized)
             {
+                _appConfig.Theme = AppTheme.Light;
                 _themeSelectorService.SetTheme(AppTheme.Light);
             }
         }
@@ -77,6 +79,7 @@ namespace Grades.Offline.WPF.Views
         {
             if (_isInitialized)
             {
+                _appConfig.Theme = AppTheme.Dark;
                 _themeSelectorService.SetTheme(AppTheme.Dark);
             }
         }
@@ -85,12 +88,10 @@ namespace Grades.Offline.WPF.Views
         {
             if (_isInitialized)
             {
+                _appConfig.Theme = AppTheme.Default;
                 _themeSelectorService.SetTheme(AppTheme.Default);
             }
         }
-
-        private void OnPrivacyStatementClick(object sender, RoutedEventArgs e)
-            => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -111,23 +112,17 @@ namespace Grades.Offline.WPF.Views
         {
             if (_isInitialized)
             {
-                Localization.Resources.Culture = new CultureInfo("en-US");
-                RestartApplication();
+                _appConfig.Language = AppLanguage.English;
+                ConfigManager.UpdateConfigFile(_appConfig);
             }
         }
         private void OnChineseChecked(object sender, RoutedEventArgs e)
         {
             if (_isInitialized)
             {
-                Localization.Resources.Culture = new CultureInfo("zh-CN");
-                RestartApplication();
+                _appConfig.Language = AppLanguage.Chinese;
+                ConfigManager.UpdateConfigFile(_appConfig);
             }
-        }
-
-        private void RestartApplication()
-        {
-            Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
         }
     }
 }

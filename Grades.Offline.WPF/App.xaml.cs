@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -8,6 +10,7 @@ using System.Windows.Threading;
 using Grades.Offline.WPF.Contracts.Services;
 using Grades.Offline.WPF.Contracts.Views;
 using Grades.Offline.WPF.Data;
+using Grades.Offline.WPF.Managers;
 using Grades.Offline.WPF.Models;
 using Grades.Offline.WPF.Services;
 using Grades.Offline.WPF.Views;
@@ -48,7 +51,7 @@ namespace Grades.Offline.WPF
                     .ConfigureAppConfiguration(c =>
                     {
                         c.SetBasePath(appLocation);
-                        
+
                     })
                     .ConfigureServices(ConfigureServices)
                     .Build();
@@ -101,11 +104,28 @@ namespace Grades.Offline.WPF
             services.AddTransient<AboutWindow>();
 
             // Configuration
-            services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 
-            var lang = context.Configuration.GetSection(nameof(AppConfig))["Language"];
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            var config = ConfigManager.GetOrCreateFile();
+            services.Configure<AppConfig>(options => {
+                options.Theme = config.Theme;
+                options.Language = config.Language;
+            });
+
+            switch (config.Language)
+            {
+                case AppLanguage.English:
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    break;
+                case AppLanguage.Chinese:
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                    break;
+                default:
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    break;
+            }
 
             // Database
             // services.AddDbContext<ApplicationDbContext>();
