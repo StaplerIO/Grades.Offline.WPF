@@ -13,6 +13,7 @@ using Grades.Offline.WPF.Managers;
 using Grades.Offline.WPF.Models;
 
 using Microsoft.Extensions.Options;
+using Ookii.Dialogs.Wpf;
 
 namespace Grades.Offline.WPF.Views
 {
@@ -112,17 +113,47 @@ namespace Grades.Offline.WPF.Views
         {
             if (_isInitialized)
             {
-                _appConfig.Language = AppLanguage.English;
-                ConfigManager.UpdateConfigFile(_appConfig);
+                UpdateLanguageSettings(AppLanguage.English);
             }
         }
         private void OnChineseChecked(object sender, RoutedEventArgs e)
         {
             if (_isInitialized)
             {
-                _appConfig.Language = AppLanguage.Chinese;
-                ConfigManager.UpdateConfigFile(_appConfig);
+                UpdateLanguageSettings(AppLanguage.Chinese);
             }
+        }
+
+        private void UpdateLanguageSettings(AppLanguage language)
+        {
+            _appConfig.Language = language;
+            ConfigManager.UpdateConfigFile(_appConfig);
+
+            var languageString = "{unset}";
+            switch (language)
+            {
+                case AppLanguage.English:
+                    languageString = "en-US";
+                    break;
+                case AppLanguage.Chinese:
+                    languageString = "zh-CN";
+                    break;
+                default:
+                    break;
+            }
+
+            var dialog = new TaskDialog
+            {
+                WindowTitle = "Dialog - Grades",
+                MainInstruction = "Language changed",
+                MainIcon = TaskDialogIcon.Information,
+                Content = $"You have changed the language to {languageString} successfully!\nYou need to restart the application",
+                ButtonStyle = TaskDialogButtonStyle.CommandLinks
+            };
+            var button = new TaskDialogButton("Okay");
+            dialog.Buttons.Add(button);
+
+            dialog.ShowDialog();
         }
     }
 }

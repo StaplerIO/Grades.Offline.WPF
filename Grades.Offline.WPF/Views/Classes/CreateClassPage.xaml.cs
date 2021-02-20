@@ -47,12 +47,14 @@ namespace Grades.Offline.WPF.Views.Classes
                     await _dbContext.SaveChangesAsync();
 
                     // Tell user that the class has been created
-                    var dialog = new TaskDialog();
-                    dialog.WindowTitle = "Dialog - Grades";
-                    dialog.MainInstruction = "Class created";
-                    dialog.MainIcon = TaskDialogIcon.Information;
-                    dialog.Content = $"You have created class \"{entity.Name}\" successfully!";
-                    dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+                    var dialog = new TaskDialog
+                    {
+                        WindowTitle = "Dialog - Grades",
+                        MainInstruction = "Class created",
+                        MainIcon = TaskDialogIcon.Information,
+                        Content = $"You have created class \"{entity.Name}\" successfully!",
+                        ButtonStyle = TaskDialogButtonStyle.CommandLinks
+                    };
                     var ignoreButton = new TaskDialogButton("Continue creating class");
                     var proceedButton = new TaskDialogButton("Go to class page");
                     dialog.Buttons.Add(ignoreButton);
