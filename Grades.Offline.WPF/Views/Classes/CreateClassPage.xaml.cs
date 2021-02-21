@@ -49,14 +49,14 @@ namespace Grades.Offline.WPF.Views.Classes
                     // Tell user that the class has been created
                     var dialog = new TaskDialog
                     {
-                        WindowTitle = "Dialog - Grades",
-                        MainInstruction = "Class created",
+                        WindowTitle = Localization.Resources.DialogTitle,
+                        MainInstruction = Localization.Resources.ClassCreateSuccess,
                         MainIcon = TaskDialogIcon.Information,
-                        Content = $"You have created class \"{entity.Name}\" successfully!",
+                        Content = $"{Localization.Resources.Class} {Localization.Resources.Name}: {entity.Name}",
                         ButtonStyle = TaskDialogButtonStyle.CommandLinks
                     };
-                    var ignoreButton = new TaskDialogButton("Continue creating class");
-                    var proceedButton = new TaskDialogButton("Go to class page");
+                    var ignoreButton = new TaskDialogButton(Localization.Resources.Continue_creating_class);
+                    var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
                     dialog.Buttons.Add(ignoreButton);
                     dialog.Buttons.Add(proceedButton);
 

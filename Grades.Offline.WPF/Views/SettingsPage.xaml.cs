@@ -129,28 +129,15 @@ namespace Grades.Offline.WPF.Views
             _appConfig.Language = language;
             ConfigManager.UpdateConfigFile(_appConfig);
 
-            var languageString = "{unset}";
-            switch (language)
-            {
-                case AppLanguage.English:
-                    languageString = "en-US";
-                    break;
-                case AppLanguage.Chinese:
-                    languageString = "zh-CN";
-                    break;
-                default:
-                    break;
-            }
-
             var dialog = new TaskDialog
             {
-                WindowTitle = "Dialog - Grades",
-                MainInstruction = "Language changed",
+                WindowTitle = Localization.Resources.DialogTitle,
+                MainInstruction = Localization.Resources.Language_changed,
                 MainIcon = TaskDialogIcon.Information,
-                Content = $"You have changed the language to {languageString} successfully!\nYou need to restart the application",
+                Content = $"{Localization.Resources.Language_changed}\n{Localization.Resources.RestartApplication}",
                 ButtonStyle = TaskDialogButtonStyle.CommandLinks
             };
-            var button = new TaskDialogButton("Okay");
+            var button = new TaskDialogButton("OK");
             dialog.Buttons.Add(button);
 
             dialog.ShowDialog();

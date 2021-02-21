@@ -41,7 +41,7 @@ namespace Grades.Offline.WPF.Views.Exams
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
 
             // Class selection
-            dataTable.Rows.Add(Guid.Empty, "Select a class");
+            dataTable.Rows.Add(Guid.Empty, Localization.Resources.SelectClass);
             if (classId.HasValue)
             {
                 var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId.Value);
@@ -73,9 +73,9 @@ namespace Grades.Offline.WPF.Views.Exams
                 {
                     var dataTable = new DataTable();
                     dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
-                    dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+                    dataTable.Columns.Add(new DataColumn(Localization.Resources.Name, typeof(string)));
                     // Checkbox property
-                    dataTable.Columns.Add(new DataColumn("Attended", typeof(bool)));
+                    dataTable.Columns.Add(new DataColumn(Localization.Resources.Is_Attended, typeof(bool)));
 
                     // If selected a class, then add students to list
                     // If not, leave it empty
@@ -99,9 +99,9 @@ namespace Grades.Offline.WPF.Views.Exams
                 {
                     var dataTable = new DataTable();
                     dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
-                    dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+                    dataTable.Columns.Add(new DataColumn(Localization.Resources.Name, typeof(string)));
                     // Checkbox property
-                    dataTable.Columns.Add(new DataColumn("Attended", typeof(bool)));
+                    dataTable.Columns.Add(new DataColumn(Localization.Resources.Is_Attended, typeof(bool)));
 
                     // If selected a class, then add students to list
                     // If not, leave it empty
@@ -168,7 +168,7 @@ namespace Grades.Offline.WPF.Views.Exams
 
                 scoreRecordWindow.Closed += (s, e) =>
                 {
-                    MessageBox.Show("Exam created successfully!", "Grades", MessageBoxButton.OK);
+                    MessageBox.Show(Localization.Resources.ExamCreateSuccess, "Grades", MessageBoxButton.OK);
                     NavigationService.Navigate(new ClassDetailPage(_selectedClass.Id));
                 };
             }

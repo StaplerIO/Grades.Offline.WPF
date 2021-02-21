@@ -270,4 +270,37 @@
   <data name="Choose language" xml:space="preserve">
     <value>选择语言</value>
   </data>
+  <data name="ExamCreateSuccess" xml:space="preserve">
+    <value>考试已被成功创建</value>
+  </data>
+  <data name="DialogTitle" xml:space="preserve">
+    <value>对话框 - Grades</value>
+  </data>
+  <data name="ClassCreateSuccess" xml:space="preserve">
+    <value>班级已被成功创建</value>
+  </data>
+  <data name="Continue creating class" xml:space="preserve">
+    <value>继续创建班级</value>
+  </data>
+  <data name="GoClass" xml:space="preserve">
+    <value>前往班级页面</value>
+  </data>
+  <data name="RestartApplication" xml:space="preserve">
+    <value>重启程序以应用更改</value>
+  </data>
+  <data name="AverageScore" xml:space="preserve">
+    <value>平均分</value>
+  </data>
+  <data name="FullMark" xml:space="preserve">
+    <value>总分</value>
+  </data>
+  <data name="Language changed" xml:space="preserve">
+    <value>语言已切换</value>
+  </data>
+  <data name="SelectClass" xml:space="preserve">
+    <value>选择一个班级</value>
+  </data>
+  <data name="StudentCreateSuccess" xml:space="preserve">
+    <value>学生已创建</value>
+  </data>
 </root>

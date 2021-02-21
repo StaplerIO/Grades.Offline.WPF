@@ -270,4 +270,37 @@
   <data name="Choose language" xml:space="preserve">
     <value>Choose language</value>
   </data>
+  <data name="ExamCreateSuccess" xml:space="preserve">
+    <value>Exam created successfully</value>
+  </data>
+  <data name="DialogTitle" xml:space="preserve">
+    <value>Dialog - Grades</value>
+  </data>
+  <data name="ClassCreateSuccess" xml:space="preserve">
+    <value>Class created successfully</value>
+  </data>
+  <data name="Continue creating class" xml:space="preserve">
+    <value>Continue creating class</value>
+  </data>
+  <data name="GoClass" xml:space="preserve">
+    <value>Go to class page</value>
+  </data>
+  <data name="Language changed" xml:space="preserve">
+    <value>Language changed</value>
+  </data>
+  <data name="RestartApplication" xml:space="preserve">
+    <value>Restart application to apply changes</value>
+  </data>
+  <data name="AverageScore" xml:space="preserve">
+    <value>Average score</value>
+  </data>
+  <data name="FullMark" xml:space="preserve">
+    <value>Full mark</value>
+  </data>
+  <data name="SelectClass" xml:space="preserve">
+    <value>Select a class</value>
+  </data>
+  <data name="StudentCreateSuccess" xml:space="preserve">
+    <value>Student created</value>
+  </data>
 </root>

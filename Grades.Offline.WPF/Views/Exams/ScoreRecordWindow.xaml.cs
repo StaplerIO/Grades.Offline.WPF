@@ -42,10 +42,10 @@ namespace Grades.Offline.WPF.Views.Exams
             DataContext = this;
 
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Student").ReadOnly = true;
+            dataTable.Columns.Add($"{Localization.Resources.Student}").ReadOnly = true;
 
             // Add row to record full mark for each subject
-            dataTable.Rows.Add("[Full mark]");
+            dataTable.Rows.Add($"[{Localization.Resources.FullMark}]");
 
             // Add column Subject
             var subjects = new List<DbSubject>();

@@ -37,7 +37,7 @@ namespace Grades.Offline.WPF.Views.Students
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
 
             // Class selection
-            dataTable.Rows.Add(Guid.Empty, "Select a class");
+            dataTable.Rows.Add(Guid.Empty, Localization.Resources.SelectClass);
             if (classId.HasValue)
             {
                 var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId.Value);
@@ -81,14 +81,14 @@ namespace Grades.Offline.WPF.Views.Students
                 ProgressRing.Visibility = Visibility.Hidden;
 
                 var dialog = new TaskDialog();
-                dialog.WindowTitle = "Dialog - Grades";
-                dialog.MainInstruction = "Student created";
+                dialog.WindowTitle = Localization.Resources.DialogTitle;
+                dialog.MainInstruction = Localization.Resources.StudentCreateSuccess;
                 dialog.MainIcon = TaskDialogIcon.Information;
                 dialog.Content = $"You have created student \"{student.FullName}\" successfully!";
                 dialog.ExpandedInformation = $"The student belongs to class \"{selectedRowElementArray.ElementAt(1)}\"";
                 dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
                 var ignoreButton = new TaskDialogButton("Continue creating student");
-                var proceedButton = new TaskDialogButton("Go to class page");
+                var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
                 dialog.Buttons.Add(ignoreButton);
                 dialog.Buttons.Add(proceedButton);
 

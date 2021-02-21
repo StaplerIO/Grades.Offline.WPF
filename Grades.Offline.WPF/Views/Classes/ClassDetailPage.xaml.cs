@@ -35,7 +35,7 @@ namespace Grades.Offline.WPF.Views.Classes
             _dbContext = new ApplicationDbContext();
             _class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId);
 
-            ClassNameLabel.Content = $"Class: {_class.Name}";
+            ClassNameLabel.Content = $"{Localization.Resources.Class}: {_class.Name}";
             ClassIdLabel.Content = _class.Id;
 
             #region InitialStudentList

@@ -80,7 +80,7 @@ namespace Grades.Offline.WPF.Views.Students
         private void InitialRecentExamsTab()
         {
             var dataTable = new DataTable();
-            dataTable.Columns.Add("Date");
+            dataTable.Columns.Add(Localization.Resources.Date);
 
             var exams = _dbContext.Exams
                 .Where(e => e.ClassId == Student.ClassId)

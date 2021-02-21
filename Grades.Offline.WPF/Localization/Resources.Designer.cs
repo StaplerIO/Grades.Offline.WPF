@@ -106,6 +106,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average score.
+        /// </summary>
+        public static string AverageScore {
+            get {
+                return ResourceManager.GetString("AverageScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic information.
         /// </summary>
         public static string Basic_information {
@@ -160,11 +169,29 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Class created successfully.
+        /// </summary>
+        public static string ClassCreateSuccess {
+            get {
+                return ResourceManager.GetString("ClassCreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue creating class.
+        /// </summary>
+        public static string Continue_creating_class {
+            get {
+                return ResourceManager.GetString("Continue creating class", resourceCulture);
             }
         }
         
@@ -250,6 +277,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dialog - Grades.
+        /// </summary>
+        public static string DialogTitle {
+            get {
+                return ResourceManager.GetString("DialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done.
         /// </summary>
         public static string Done {
@@ -277,6 +313,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exam created successfully.
+        /// </summary>
+        public static string ExamCreateSuccess {
+            get {
+                return ResourceManager.GetString("ExamCreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Examiees.
         /// </summary>
         public static string Examiees {
@@ -291,6 +336,24 @@ namespace Grades.Offline.WPF.Localization {
         public static string Full_name {
             get {
                 return ResourceManager.GetString("Full name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full mark.
+        /// </summary>
+        public static string FullMark {
+            get {
+                return ResourceManager.GetString("FullMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to class page.
+        /// </summary>
+        public static string GoClass {
+            get {
+                return ResourceManager.GetString("GoClass", resourceCulture);
             }
         }
         
@@ -327,6 +390,15 @@ namespace Grades.Offline.WPF.Localization {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language changed.
+        /// </summary>
+        public static string Language_changed {
+            get {
+                return ResourceManager.GetString("Language changed", resourceCulture);
             }
         }
         
@@ -394,6 +466,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart application to apply changes.
+        /// </summary>
+        public static string RestartApplication {
+            get {
+                return ResourceManager.GetString("RestartApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Score.
         /// </summary>
         public static string Score {
@@ -408,6 +489,15 @@ namespace Grades.Offline.WPF.Localization {
         public static string Score_Recorder {
             get {
                 return ResourceManager.GetString("Score Recorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a class.
+        /// </summary>
+        public static string SelectClass {
+            get {
+                return ResourceManager.GetString("SelectClass", resourceCulture);
             }
         }
         
@@ -462,6 +552,15 @@ namespace Grades.Offline.WPF.Localization {
         public static string Student_details {
             get {
                 return ResourceManager.GetString("Student details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student created.
+        /// </summary>
+        public static string StudentCreateSuccess {
+            get {
+                return ResourceManager.GetString("StudentCreateSuccess", resourceCulture);
             }
         }
         

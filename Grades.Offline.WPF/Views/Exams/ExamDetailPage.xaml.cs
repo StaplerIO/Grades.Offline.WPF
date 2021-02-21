@@ -92,7 +92,7 @@ namespace Grades.Offline.WPF.Views.Exams
             // Add first column (name)
             var averageScores = new List<object>
             {
-                "[Average]"
+                $"[{Localization.Resources.AverageScore}]"
             };
             
             // Calculate each subject
