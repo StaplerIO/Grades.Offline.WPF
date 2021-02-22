@@ -84,10 +84,10 @@ namespace Grades.Offline.WPF.Views.Students
                 dialog.WindowTitle = Localization.Resources.DialogTitle;
                 dialog.MainInstruction = Localization.Resources.StudentCreateSuccess;
                 dialog.MainIcon = TaskDialogIcon.Information;
-                dialog.Content = $"You have created student \"{student.FullName}\" successfully!";
-                dialog.ExpandedInformation = $"The student belongs to class \"{selectedRowElementArray.ElementAt(1)}\"";
+                dialog.Content = $"{Localization.Resources.Full_name} : {student.FullName}";
+                dialog.ExpandedInformation = $"{Localization.Resources.StudentOwner} \"{selectedRowElementArray.ElementAt(1)}\"";
                 dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
-                var ignoreButton = new TaskDialogButton("Continue creating student");
+                var ignoreButton = new TaskDialogButton(Localization.Resources.Continue_creating_student);
                 var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
                 dialog.Buttons.Add(ignoreButton);
                 dialog.Buttons.Add(proceedButton);

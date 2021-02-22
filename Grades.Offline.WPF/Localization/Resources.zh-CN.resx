@@ -303,4 +303,25 @@
   <data name="StudentCreateSuccess" xml:space="preserve">
     <value>学生已创建</value>
   </data>
+  <data name="Continue creating student" xml:space="preserve">
+    <value>继续创建学生</value>
+  </data>
+  <data name="StudentOwner" xml:space="preserve">
+    <value>该学生属于班级</value>
+  </data>
+  <data name="Continue creating subject" xml:space="preserve">
+    <value>继续创建学科</value>
+  </data>
+  <data name="HighestScore" xml:space="preserve">
+    <value>最高分</value>
+  </data>
+  <data name="LowestScore" xml:space="preserve">
+    <value>最低分</value>
+  </data>
+  <data name="SubjectCreateSuccess" xml:space="preserve">
+    <value>学科已被成功创建</value>
+  </data>
+  <data name="SubjectOwner" xml:space="preserve">
+    <value>该科目属于班级</value>
+  </data>
 </root>

@@ -126,39 +126,7 @@ namespace Grades.Offline.WPF.Views.Students
                 });
 
             LatestExamPersonalData.ItemsSource = dataTable.DefaultView;
-
-            // Only latest exam
-            /*
-            var examsOrderedByDate = _dbContext.Exams
-               .Where(e => e.ClassId == Student.ClassId)
-               .OrderByDescending(e => e.Date)
-               .ToList();
-            var latestExam = examsOrderedByDate
-                .Where(e => e.StudentScores.IsStudentAttended(Student.Id))
-                .FirstOrDefault();
-
-            #region InitialDataGrid
-            var dataTable = RankTabelExtension.GetUIFriendlyRankTableByExamId(latestExam.Id);
-
-            object[] targetRowData = null;
-            foreach (DataRow row in dataTable.Rows)
-            {
-                // A student row is structured like this: (<Sno>) <FullName>, so we get the last characters (This may cause error!)
-                if (row.ItemArray[0].ToString().EndsWith(Student.FullName))
-                {
-                    targetRowData = row.ItemArray;
-                    break;
-                }
-            }
-
-            dataTable.Rows.Clear();
-            dataTable.Rows.Add(targetRowData);
-            dataTable.Columns.RemoveAt(0);
-
-            LatestExamPersonalData.ItemsSource = dataTable.DefaultView;
-            #endregion
-            */
-
+           
             #region InitialChart
             var chartSeries = new SeriesCollection();
             var labels = new List<string>();
@@ -175,31 +143,13 @@ namespace Grades.Offline.WPF.Views.Students
                 });
             }
 
-            // Add total score serie
+            // Add total score series
             chartSeries.Add(new LineSeries
             {
                 Title = dataTable.Columns[dataTable.Columns.Count - 1].ColumnName,
                 Values = new ChartValues<decimal>(),
                 Fill = Brushes.Transparent
             });
-
-            /*
-            for (int i = 1; i < dataTable.Columns.Count - 1; i++)
-            {
-                var columnName = dataTable.Columns[i].ColumnName;
-                var rowData = dataTable.Rows[0].ItemArray[i].ToString();
-
-                decimal currentSubjectScore = decimal.Parse(rowData.Substring(0, rowData.IndexOf('(')));
-
-                chartSeries.Add(new ColumnSeries
-                {
-                    Title = columnName,
-                    Values = new ChartValues<decimal> { currentSubjectScore }
-                });
-                labels.Add(columnName);
-            }
-            */
-
             foreach (DataRow row in dataTable.Rows)
             {
                 // Just like we said before...

@@ -114,16 +114,13 @@ namespace Grades.Offline.WPF
             switch (config.Language)
             {
                 case AppLanguage.English:
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    Localization.Resources.Culture = new CultureInfo("en-US");
                     break;
                 case AppLanguage.Chinese:
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("zh-CN");
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                    Localization.Resources.Culture = new CultureInfo("zh-CN");
                     break;
                 default:
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    Localization.Resources.Culture = new CultureInfo("en-US");
                     break;
             }
 

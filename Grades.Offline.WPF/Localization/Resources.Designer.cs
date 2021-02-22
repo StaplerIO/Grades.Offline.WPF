@@ -196,6 +196,24 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue creating student.
+        /// </summary>
+        public static string Continue_creating_student {
+            get {
+                return ResourceManager.GetString("Continue creating student", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue creating subject.
+        /// </summary>
+        public static string Continue_creating_subject {
+            get {
+                return ResourceManager.GetString("Continue creating subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Create {
@@ -367,6 +385,15 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highest score.
+        /// </summary>
+        public static string HighestScore {
+            get {
+                return ResourceManager.GetString("HighestScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import from .csv file.
         /// </summary>
         public static string Import_from__csv_file {
@@ -408,6 +435,15 @@ namespace Grades.Offline.WPF.Localization {
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lowest score.
+        /// </summary>
+        public static string LowestScore {
+            get {
+                return ResourceManager.GetString("LowestScore", resourceCulture);
             }
         }
         
@@ -565,11 +601,38 @@ namespace Grades.Offline.WPF.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The student is belongs to class.
+        /// </summary>
+        public static string StudentOwner {
+            get {
+                return ResourceManager.GetString("StudentOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subject details.
         /// </summary>
         public static string Subject_details {
             get {
                 return ResourceManager.GetString("Subject details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject created successfully.
+        /// </summary>
+        public static string SubjectCreateSuccess {
+            get {
+                return ResourceManager.GetString("SubjectCreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The subject is belongs to class.
+        /// </summary>
+        public static string SubjectOwner {
+            get {
+                return ResourceManager.GetString("SubjectOwner", resourceCulture);
             }
         }
         

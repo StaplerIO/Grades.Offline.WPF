@@ -38,7 +38,7 @@ namespace Grades.Offline.WPF.Views.Subjects
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
 
             // Class selection
-            dataTable.Rows.Add(Guid.Empty, "Select a class");
+            dataTable.Rows.Add(Guid.Empty, Localization.Resources.SelectClass);
             if (classId.HasValue)
             {
                 var @class = _dbContext.Classes.FirstOrDefault(c => c.Id == classId.Value);
@@ -81,14 +81,14 @@ namespace Grades.Offline.WPF.Views.Subjects
                 ProgressRing.Visibility = Visibility.Hidden;
 
                 var dialog = new TaskDialog();
-                dialog.WindowTitle = "Dialog - Grades";
-                dialog.MainInstruction = "Subject created";
+                dialog.WindowTitle = Localization.Resources.DialogTitle;
+                dialog.MainInstruction = Localization.Resources.SubjectCreateSuccess;
                 dialog.MainIcon = TaskDialogIcon.Information;
-                dialog.Content = $"You have created subject \"{subject.Name}\" successfully!";
-                dialog.ExpandedInformation = $"The subject belongs to class \"{selectedRowElementArray.ElementAt(1)}\"";
+                dialog.Content = $"{Localization.Resources.Subjects} : {subject.Name}";
+                dialog.ExpandedInformation = $"{Localization.Resources.SubjectOwner} \"{selectedRowElementArray.ElementAt(1)}\"";
                 dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
-                var ignoreButton = new TaskDialogButton("Continue creating subject");
-                var proceedButton = new TaskDialogButton("Go to class page");
+                var ignoreButton = new TaskDialogButton(Localization.Resources.Continue_creating_subject);
+                var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
                 dialog.Buttons.Add(ignoreButton);
                 dialog.Buttons.Add(proceedButton);
 
@@ -103,7 +103,6 @@ namespace Grades.Offline.WPF.Views.Subjects
 
                 DoneButton.Visibility = Visibility.Visible;
                 ProgressRing.Visibility = Visibility.Hidden;
-                
             }
         }
     }

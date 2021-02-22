@@ -85,21 +85,21 @@ namespace Grades.Offline.WPF.Views.Subjects
             {
                 new LineSeries
                 {
-                    Title = "Average Score",
+                    Title = Localization.Resources.AverageScore,
                     Values = new ChartValues<decimal>(),
                     Fill = Brushes.Transparent,
                     AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore
                 },
                 new LineSeries
                 {
-                    Title = "Highest Score",
+                    Title = Localization.Resources.HighestScore,
                     Values = new ChartValues<decimal>(),
                     Fill = Brushes.Transparent,
                     AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore
                 },
                 new LineSeries
                 {
-                    Title = "Lowest Score",
+                    Title = Localization.Resources.LowestScore,
                     Values = new ChartValues<decimal>(),
                     Fill = Brushes.Transparent,
                     AreaLimit = (double)examSummaries[0].SubjectScores.FirstOrDefault(s => s.SubjectId == Subject.Id).TotalScore

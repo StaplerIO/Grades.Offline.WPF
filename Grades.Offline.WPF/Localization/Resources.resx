@@ -303,4 +303,25 @@
   <data name="StudentCreateSuccess" xml:space="preserve">
     <value>Student created</value>
   </data>
+  <data name="Continue creating student" xml:space="preserve">
+    <value>Continue creating student</value>
+  </data>
+  <data name="StudentOwner" xml:space="preserve">
+    <value>The student is belongs to class</value>
+  </data>
+  <data name="Continue creating subject" xml:space="preserve">
+    <value>Continue creating subject</value>
+  </data>
+  <data name="HighestScore" xml:space="preserve">
+    <value>Highest score</value>
+  </data>
+  <data name="LowestScore" xml:space="preserve">
+    <value>Lowest score</value>
+  </data>
+  <data name="SubjectCreateSuccess" xml:space="preserve">
+    <value>Subject created successfully</value>
+  </data>
+  <data name="SubjectOwner" xml:space="preserve">
+    <value>The subject is belongs to class</value>
+  </data>
 </root>
