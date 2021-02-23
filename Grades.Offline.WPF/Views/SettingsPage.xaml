@@ -70,12 +70,14 @@
                         Text="{x:Static loc:Resources.Choose_language}" />
                     <StackPanel Margin="{StaticResource XSmallTopMargin}">
                         <RadioButton
+                            Name="LanguageChinese_RadioButton"
                             GroupName="Language"
                             Content="简体中文"
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnChineseChecked"
                             IsChecked="False" />
                         <RadioButton
+                            Name="LanguageEnglish_RadioButton"
                             GroupName="Language"
                             Content="English (US)"
                             Margin="{StaticResource XSmallTopMargin}"

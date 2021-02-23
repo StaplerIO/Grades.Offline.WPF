@@ -54,6 +54,23 @@ namespace Grades.Offline.WPF.Views
             _applicationInfoService = applicationInfoService;
             InitializeComponent();
             DataContext = this;
+
+            // CheckBox for AppLanguage
+            switch (_appConfig.Language)
+            {
+                case AppLanguage.English:
+                    LanguageEnglish_RadioButton.IsChecked = true;
+                    LanguageChinese_RadioButton.IsChecked = false;
+                    break;
+                case AppLanguage.Chinese:
+                    LanguageEnglish_RadioButton.IsChecked = false;
+                    LanguageChinese_RadioButton.IsChecked = true;
+                    break;
+                default:
+                    LanguageEnglish_RadioButton.IsChecked = true;
+                    LanguageChinese_RadioButton.IsChecked = false;
+                    break;
+            }
         }
 
         public void OnNavigatedTo(object parameter)

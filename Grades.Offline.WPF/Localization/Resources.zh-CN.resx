@@ -324,4 +324,7 @@
   <data name="SubjectOwner" xml:space="preserve">
     <value>该科目属于班级</value>
   </data>
+  <data name="Options" xml:space="preserve">
+    <value>选项</value>
+  </data>
 </root>

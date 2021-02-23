@@ -46,7 +46,7 @@
                             </i:Interaction.Behaviors>
                             <Fluent:BackstageTabItem
                                 Tag="Grades.Offline.WPF.Views.SettingsPage"
-                                Header="Options" />
+                                Header="{x:Static loc:Resources.Options}" />
                         </Fluent:BackstageTabControl>
                     </Fluent:Backstage>
                 </Fluent:Ribbon.Menu>
