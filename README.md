@@ -10,4 +10,22 @@ An offline version of Grades
 ## Developing
 
 - Language: C#
-- Framework: .NET Core (3.1) [WPF]
+- Framework: .NET 5 [WPF]
+
+
+
+## Functions
+
+- Class management
+- Student management
+- Exam management
+- Display exam results via Chart
+- Detailed exam results
+
+
+
+## Features
+
+- Office-liked UI (Ribbon)
+- Multi-language support (en-US, zh-CN)
+- Single file : You don't need to install it to your computer
