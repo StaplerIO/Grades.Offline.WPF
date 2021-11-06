@@ -78,12 +78,14 @@ namespace Grades.Offline.WPF.Views.Students
             {
                 if (!int.TryParse((string)student["Sno"], out _))
                 {
-                    var illegalSnoDialog = new TaskDialog();
-                    illegalSnoDialog.WindowTitle = Localization.Resources.DialogTitle;
-                    illegalSnoDialog.MainInstruction = "Sno number must be an integer";
-                    illegalSnoDialog.Content = $"Sno \"{(string)student["Sno"]}\" is not an integer";
-                    illegalSnoDialog.MainIcon = TaskDialogIcon.Warning;
-                    illegalSnoDialog.ButtonStyle = TaskDialogButtonStyle.Standard;
+                    var illegalSnoDialog = new TaskDialog
+                    {
+                        WindowTitle = Localization.Resources.DialogTitle,
+                        MainInstruction = "Sno number must be an integer",
+                        Content = $"Sno \"{(string)student["Sno"]}\" is not an integer",
+                        MainIcon = TaskDialogIcon.Warning,
+                        ButtonStyle = TaskDialogButtonStyle.Standard
+                    };
                     illegalSnoDialog.Buttons.Add(new TaskDialogButton("Okay"));
                     illegalSnoDialog.ShowDialog(Window.GetWindow(this));
 
@@ -101,13 +103,15 @@ namespace Grades.Offline.WPF.Views.Students
             await _dbContext.SaveChangesAsync();
 
             #region ShowDialog
-            var dialog = new TaskDialog();
-            dialog.WindowTitle = Localization.Resources.DialogTitle;
-            dialog.MainInstruction = Localization.Resources.StudentCreateSuccess;
-            dialog.MainIcon = TaskDialogIcon.Information;
-            dialog.Content = $"{_students.Rows.Count} students created successfully";
-            dialog.ExpandedInformation = $"{Localization.Resources.StudentOwner} \"{selectedRowElementArray.ElementAt(1)}\"";
-            dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+            var dialog = new TaskDialog
+            {
+                WindowTitle = Localization.Resources.DialogTitle,
+                MainInstruction = Localization.Resources.StudentCreateSuccess,
+                MainIcon = TaskDialogIcon.Information,
+                Content = $"{_students.Rows.Count} students created successfully",
+                ExpandedInformation = $"{Localization.Resources.StudentOwner} \"{selectedRowElementArray.ElementAt(1)}\"",
+                ButtonStyle = TaskDialogButtonStyle.CommandLinks
+            };
             var ignoreButton = new TaskDialogButton(Localization.Resources.Continue_creating_student);
             var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
             dialog.Buttons.Add(ignoreButton);

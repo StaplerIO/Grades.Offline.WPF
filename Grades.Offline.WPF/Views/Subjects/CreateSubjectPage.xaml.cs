@@ -80,13 +80,15 @@ namespace Grades.Offline.WPF.Views.Subjects
                 DoneButton.Visibility = Visibility.Visible;
                 ProgressRing.Visibility = Visibility.Hidden;
 
-                var dialog = new TaskDialog();
-                dialog.WindowTitle = Localization.Resources.DialogTitle;
-                dialog.MainInstruction = Localization.Resources.SubjectCreateSuccess;
-                dialog.MainIcon = TaskDialogIcon.Information;
-                dialog.Content = $"{Localization.Resources.Subjects} : {subject.Name}";
-                dialog.ExpandedInformation = $"{Localization.Resources.SubjectOwner} \"{selectedRowElementArray.ElementAt(1)}\"";
-                dialog.ButtonStyle = TaskDialogButtonStyle.CommandLinks;
+                var dialog = new TaskDialog
+                {
+                    WindowTitle = Localization.Resources.DialogTitle,
+                    MainInstruction = Localization.Resources.SubjectCreateSuccess,
+                    MainIcon = TaskDialogIcon.Information,
+                    Content = $"{Localization.Resources.Subjects} : {subject.Name}",
+                    ExpandedInformation = $"{Localization.Resources.SubjectOwner} \"{selectedRowElementArray.ElementAt(1)}\"",
+                    ButtonStyle = TaskDialogButtonStyle.CommandLinks
+                };
                 var ignoreButton = new TaskDialogButton(Localization.Resources.Continue_creating_subject);
                 var proceedButton = new TaskDialogButton(Localization.Resources.GoClass);
                 dialog.Buttons.Add(ignoreButton);
