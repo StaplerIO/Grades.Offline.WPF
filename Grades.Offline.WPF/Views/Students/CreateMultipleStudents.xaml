@@ -1,0 +1,49 @@
+﻿<Page x:Class="Grades.Offline.WPF.Views.Students.CreateMultipleStudents"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:local="clr-namespace:Grades.Offline.WPF.Views.Students"
+      mc:Ignorable="d"
+      xmlns:loc="clr-namespace:Grades.Offline.WPF.Localization"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreateMultipleStudents">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Margin="{StaticResource MediumLeftMargin}"
+            Text="Create multiple students" />
+        <Grid
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10" Grid.ColumnSpan="4">
+                <DataGrid Name="StudentList" MinColumnWidth="100" />
+            </StackPanel>
+            <StackPanel Margin="10" Grid.Column="4">
+                <Button Name="DoneButton" Click="DoneButton_Click">Done</Button>
+
+                <StackPanel Orientation="Vertical" Margin="0, 5, 0, 0">
+                    <Label Content="{x:Static loc:Resources.Class}"/>
+                    <ComboBox Name="ClassSelector" DisplayMemberPath="Name"/>
+                </StackPanel>
+
+                <Button Margin="0, 20, 0, 0" Click="NewEntryButton_Click" Name="NewEntryButton">New entry</Button>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Page>

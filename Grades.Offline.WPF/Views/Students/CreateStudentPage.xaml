@@ -44,6 +44,8 @@
                 <StackPanel Orientation="Vertical" Margin="600, 20, 00, 10">
                     <Button x:Name="DoneButton" Click="DoneButton_Click" Content="{x:Static loc:Resources.Done}"/>
                     <mah:ProgressRing Height="20" Width="20" Visibility="Hidden" Name="ProgressRing"/>
+
+                    <Button x:Name="CreateMultipleButton" Content="Create multiple" Click="CreateMultipleButton_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

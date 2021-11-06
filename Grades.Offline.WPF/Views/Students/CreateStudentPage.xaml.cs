@@ -31,7 +31,7 @@ namespace Grades.Offline.WPF.Views.Students
             _dbContext = new ApplicationDbContext();
             InitializeComponent();
 
-            #region InitialClassSelector
+            #region InitializeClassSelector
             var dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("Id", typeof(Guid)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -113,6 +113,14 @@ namespace Grades.Offline.WPF.Views.Students
             {
                 e.Handled = true;
             }
+        }
+
+        private void CreateMultipleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedRowElementArray = ((DataRowView)ClassSelector.SelectedItem).Row.ItemArray;
+            var classId = (Guid)selectedRowElementArray.ElementAt(0);
+
+            NavigationService.Navigate(new CreateMultipleStudents(classId));
         }
     }
 }
